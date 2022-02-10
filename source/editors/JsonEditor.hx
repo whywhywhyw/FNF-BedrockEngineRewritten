@@ -58,6 +58,7 @@ class JsonEditor extends MusicBeatState
       public var savedir:String = "backup/uiBackup.txt";
       public var backup:String;
       public var gsavedir:String = "backup/gameplayBackup.txt";
+      public var nsavedir:String = "backup/noteBackup.txt";
       public var gbackup:String;
 
 
@@ -97,16 +98,15 @@ class JsonEditor extends MusicBeatState
             JsonSettings.dev(JsonSettings.dir);
             
             
-	      
-	    appearance = File.getContent(JsonSettings.dir);
+            appearance = File.getContent(JsonSettings.dir);
             gameplay = File.getContent(JsonSettings.dirtwo);
             note = File.getContent(JsonSettings.offdir);
             
-	      
 	    if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir))
 	    {
 		    backup = appearance;
 		    gbackup = gameplay;
+                nbackup = note;
 	    }
 		     
 
@@ -162,7 +162,7 @@ class JsonEditor extends MusicBeatState
 
             var anti = new FlxUICheckBox(20, 100, null, null, "Antimash", 200);
 		anti.checked = mash;
-	      anti.callback = function()
+            anti.callback = function()
 		{
                   mash = !mash;
 		};
@@ -170,7 +170,7 @@ class JsonEditor extends MusicBeatState
             var coolButton = new FlxButton(FlxG.width - 855, 25, "Save Prefs", function()
             {
                   saveUISetting();
-		      saveGameplaySetting();
+                  saveGameplaySetting();
                   saveNoteSetting();
             });
 
