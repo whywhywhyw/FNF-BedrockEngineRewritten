@@ -10,6 +10,7 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
+import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 #if MODS_ALLOWED
@@ -52,17 +53,18 @@ class CreditsState extends MusicBeatState
 		add(grpOptions);
 
 		#if MODS_ALLOWED
-		//trace("finding mod shit");
+		// trace("finding mod shit");
 		for (folder in Paths.getModDirectories())
 		{
 			var creditsFile:String = Paths.mods(folder + '/data/credits.txt');
 			if (FileSystem.exists(creditsFile))
 			{
 				var firstarray:Array<String> = File.getContent(creditsFile).split('\n');
-				for(i in firstarray)
+				for (i in firstarray)
 				{
 					var arr:Array<String> = i.replace('\\n', '\n').split("::");
-					if(arr.length >= 5) arr.push(folder);
+					if (arr.length >= 5)
+						arr.push(folder);
 					creditsStuff.push(arr);
 				}
 				creditsStuff.push(['']);
@@ -70,17 +72,18 @@ class CreditsState extends MusicBeatState
 		};
 		var folder = "";
 		var creditsFile:String = Paths.mods('data/credits.txt');
-			if (FileSystem.exists(creditsFile))
+		if (FileSystem.exists(creditsFile))
+		{
+			var firstarray:Array<String> = File.getContent(creditsFile).split('\n');
+			for (i in firstarray)
 			{
-				var firstarray:Array<String> = File.getContent(creditsFile).split('\n');
-				for(i in firstarray)
-				{
-					var arr:Array<String> = i.replace('\\n', '\n').split("::");
-					if(arr.length >= 5) arr.push(folder);
-					creditsStuff.push(arr);
-				}
-				creditsStuff.push(['']);
+				var arr:Array<String> = i.replace('\\n', '\n').split("::");
+				if (arr.length >= 5)
+					arr.push(folder);
+				creditsStuff.push(arr);
 			}
+			creditsStuff.push(['']);
+		}
 		#end
 		// mano desculpa de eu des ordenei as coisas, é do tabnine
 		var pisspoop:Array<Array<String>> = [
@@ -91,35 +94,72 @@ class CreditsState extends MusicBeatState
 				'gui',
 				'Engine Coder and Publisher',
 				'https://github.com/Gui-iago',
-				'8344CC'
+				'26B65B'
 			],
 			[
 				'Luisinh010',
 				'luis',
 				'Engine Coder',
 				'https://github.com/Luisinhi010',
-				'31b0d1'
+				'DBAC50'
 			],
 			[
-				'AquaStrikr',
-				'aqua',
-				'Artist - Judgements Design',
-				'https://twitter.com/aqua_strikr',
-				'737BCB'
+				'Stilic',
+				'stilic',
+				'Engine Coder.',
+				'https://github.com/ShadowMario/FNF-PsychEngine/pull/1809',
+				'FF873C'
+			],
+			[''],
+			['Bedrock Contributors'],
+			[
+				'NxtVithor',
+				'nxtvithor',
+				'Note Skins',
+				'https://twitter.com/NxtVithor',
+				'FF00E4'
 			],
 			[
-				'Dex Dousky',
-				'dex',
-				'Main Menu Music',
-				'https://twitter.com/cachorro_sonico',
-				'ffdd33'
+				'Suok',
+				'suok',
+				'Title Screen Logo, Credits Icons',
+				'https://twitter.com/oSuOk3',
+				'ff0062'
+			],
+			[
+				'Gazozoz',
+				'gazozoz',
+				'Camera Movement Code',
+				'https://twitter.com/Gazozoz_',
+				'982f2F'
+			],
+			[
+				'Prynnho',
+				'prynn',
+				'Rich Presence Designer',
+				'https://twitter.com/PrynnShilvaru',
+				'4253A2'
 			],
 			[
 				'ShadowBowser',
 				'shadowbowser',
-				'Artist - Credits Screen Icons',
+				'Old Credits Screen Icons',
 				'https://www.reddit.com/u/JulioHaHaHa',
 				'444444'
+			],
+			[
+				'Dex Dousky',
+				'dex',
+				'Main Menu Music, Game Over Music',
+				'https://twitter.com/cachorro_sonico',
+				'58320D'
+			],
+			[
+				'LazyBudd',
+				'lazyb',
+				'Offset Song',
+				'https://twitter.com/Lazy_Weeddy_boy',
+				'FF6200'
 			],
 			[''],
 			['Original PRs'],
@@ -128,35 +168,35 @@ class CreditsState extends MusicBeatState
 				'burger',
 				'Json-editable Menus',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/3891',
-				'e7e224'
+				'D78B50'
 			],
 			[
 				'CerBor',
 				'cerbor',
 				'Difficulty Drop Down on Chart Menu',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/2896',
-				'c764db'
+				'C952E0'
 			],
 			[
 				'HiroMizuki',
 				'hirom',
 				'Pixel Note Splashes',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/1792',
-				'722905'
+				'31FF7C'
 			],
 			[
 				'i-winxd',
 				'i-winxd',
-				'Complex Accuracy',
+				'Complex Accuracy (Old Lua)',
 				'https://github.com/ShadowMario/FNF-PsychEngine/discussions/2917',
-				'ffaee9'
+				'FFA6D2'
 			],
 			[
 				'lemz1',
 				'lemz1',
 				'Play as Opponent',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/2770',
-				'74c3fb'
+				'48C7FF'
 			],
 			[
 				'l1ttleO',
@@ -168,30 +208,30 @@ class CreditsState extends MusicBeatState
 			[
 				'magnumsrtisswag',
 				'magnums',
-				'Stage Editor, Credits Warning',
+				'Credits Warning',
 				'https://github.com/magnumsrtisswag',
-				'7e7b6d'
+				'333333'
 			],
 			[
 				'Starmapo',
 				'starmapo',
 				'Time Signatures on Chart Editor',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/3428',
-				'8bfa8b'
-			],
-			[
-				'Stilic',
-				'stilic',
-				'Menu Animations, Freeplay Bump, Max Optimization',
-				'https://github.com/ShadowMario/FNF-PsychEngine/pull/1809',
-				'fb9b4b'
+				'83FF87'
 			],
 			[
 				'XtraXD1',
 				'xtraxd1',
 				'Show/Hide Weeks temporally + Getting/Setting on Source Code',
 				'https://github.com/ShadowMario/FNF-PsychEngine/pull/3192',
-				'76aac5'
+				'91CBFF'
+			],
+			[
+				'tposejank',
+				'tposejank',
+				'Discord Client ID editable through lua',
+				'https://github.com/ShadowMario/FNF-PsychEngine/pull/3845',
+				'013220'
 			],
 			[''],
 			['Engine Shoutouts'],
@@ -205,9 +245,9 @@ class CreditsState extends MusicBeatState
 			[
 				'Verwex',
 				'verwex',
-				'Made Mic´d Up Engine, Winning Icons',
+				'Made Mic´d Up Engine, Winning Icons, Original Code for Menu Animations',
 				'https://github.com/Verwex/Funkin-Mic-d-Up-SC',
-				'2e3d62'
+				'F3B56B'
 			],
 			[''],
 			['Psych Engine Team'],
@@ -320,16 +360,18 @@ class CreditsState extends MusicBeatState
 			optionText.isMenuItem = true;
 			optionText.screenCenter(X);
 			optionText.yAdd -= 70;
-			if(isSelectable) {
+			if (isSelectable)
+			{
 				optionText.x -= 70;
 			}
 			optionText.forceX = optionText.x;
-			//optionText.yMult = 90;
+			// optionText.yMult = 90;
 			optionText.targetY = i;
 			grpOptions.add(optionText);
 
-			if(isSelectable) {
-				if(creditsStuff[i][5] != null)
+			if (isSelectable)
+			{
+				if (creditsStuff[i][5] != null)
 				{
 					Paths.currentModDirectory = creditsStuff[i][5];
 				}
@@ -337,7 +379,7 @@ class CreditsState extends MusicBeatState
 				var icon:AttachedSprite = new AttachedSprite('credits/' + creditsStuff[i][1]);
 				icon.xAdd = optionText.width + 10;
 				icon.sprTracker = optionText;
-	
+
 				// using a FlxGroup is too much fuss!
 				iconArray.push(icon);
 				add(icon);
@@ -372,6 +414,8 @@ class CreditsState extends MusicBeatState
 		super.create();
 	}
 
+	var holdTime:Float = 0;
+
 	override function update(elapsed:Float)
 	{
 		warningDialogue.setText("YOU ARE ABOUT TO GO TO: \n"
@@ -385,16 +429,32 @@ class CreditsState extends MusicBeatState
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
 
-		if (!warningText.visible) {
+		var shiftMult:Int = 1;
+		if (FlxG.keys.pressed.SHIFT)
+			shiftMult = 3;
+
 		if (upP)
 		{
-			changeSelection(-1);
+			changeSelection(-shiftMult);
+			holdTime = 0;
 		}
 		if (downP)
 		{
-			changeSelection(1);
+			changeSelection(shiftMult);
+			holdTime = 0;
 		}
-	}
+
+		if (controls.UI_DOWN || controls.UI_UP)
+		{
+			var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
+			holdTime += elapsed;
+			var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
+
+			if (holdTime > 0.5 && checkNewHold - checkLastHold > 0)
+			{
+				changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+			}
+		}
 
 		if (controls.BACK)
 		{
@@ -412,26 +472,31 @@ class CreditsState extends MusicBeatState
 		super.update(elapsed);
 	}
 
-	function changeSelection(change:Int = 0)
-	{
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-		do {
+	function changeSelection(change:Int = 0, playSound:Bool = true)
+	{	if (playSound)
+			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+		do
+		{
 			curSelected += change;
 			if (curSelected < 0)
 				curSelected = creditsStuff.length - 1;
 			if (curSelected >= creditsStuff.length)
 				curSelected = 0;
-		} while(unselectableCheck(curSelected));
+		}
+		while (unselectableCheck(curSelected));
 
-		var newColor:Int =  getCurrentBGColor();
+		var newColor:Int = getCurrentBGColor();
 		warningDialogue.setColor(FlxColor.fromInt(newColor));
-		if(newColor != intendedColor) {
-			if(colorTween != null) {
+		if (newColor != intendedColor)
+		{
+			if (colorTween != null)
+			{
 				colorTween.cancel();
 			}
 			intendedColor = newColor;
 			colorTween = FlxTween.color(bg, 1, bg.color, intendedColor, {
-				onComplete: function(twn:FlxTween) {
+				onComplete: function(twn:FlxTween)
+				{
 					colorTween = null;
 				}
 			});
@@ -444,9 +509,11 @@ class CreditsState extends MusicBeatState
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			if(!unselectableCheck(bullShit-1)) {
+			if (!unselectableCheck(bullShit - 1))
+			{
 				item.alpha = 0.6;
-				if (item.targetY == 0) {
+				if (item.targetY == 0)
+				{
 					item.alpha = 1;
 				}
 			}
@@ -461,15 +528,18 @@ class CreditsState extends MusicBeatState
 		descBox.updateHitbox();
 	}
 
-	function getCurrentBGColor() {
+	function getCurrentBGColor()
+	{
 		var bgColor:String = creditsStuff[curSelected][4];
-		if(!bgColor.startsWith('0x')) {
+		if (!bgColor.startsWith('0x'))
+		{
 			bgColor = '0xFF' + bgColor;
 		}
 		return Std.parseInt(bgColor);
 	}
 
-	private function unselectableCheck(num:Int):Bool {
+	private function unselectableCheck(num:Int):Bool
+	{
 		return creditsStuff[num].length <= 1;
 	}
 }
