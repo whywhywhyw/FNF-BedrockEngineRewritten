@@ -383,18 +383,6 @@ class ClientPrefs {
 		FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
 	}
-<<<<<<< HEAD
-	public static function getResolution():Array<Int>{
-		var res = ClientPrefs.screenRes.split(" x ");
-		
-		if (ClientPrefs.screenRes == "FULLSCREEN") res = ["1280", "720"];
-		
-		
-		
-		return [Std.parseInt(res[0]),Std.parseInt(res[1])];
-	}
-=======
->>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 	public static function copyKey(arrayToCopy:Array<FlxKey>):Array<FlxKey> {
 		var copiedArray:Array<FlxKey> = arrayToCopy.copy();
 		var i:Int = 0;

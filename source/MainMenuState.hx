@@ -286,11 +286,7 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-<<<<<<< HEAD
 			// spr.screenCenter(X);
-=======
-			spr.screenCenter(X);
->>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 		});
 	}
 
@@ -312,12 +308,7 @@ class MainMenuState extends MusicBeatState
 			{
 				spr.animation.play('selected');
 				var add:Float = 0;
-<<<<<<< HEAD
-				if (menuItems.length > 4)
-				{
-=======
 				if(menuItems.length > 4) {
->>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 					add = menuItems.length * 8;
 				}
 				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y - add);
@@ -325,7 +316,6 @@ class MainMenuState extends MusicBeatState
 			}
 		});
 	}
-<<<<<<< HEAD
 
 	override function beatHit()
 	{
@@ -333,6 +323,4 @@ class MainMenuState extends MusicBeatState
 		if (curBeat % 4 == 0 && ClientPrefs.camZooms)
 			FlxG.camera.zoom = 1.015;
 	}
-=======
->>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 }
