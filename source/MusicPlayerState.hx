@@ -78,7 +78,6 @@ class MusicPlayerState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-		Main.curStateS = 'MusicPlayerState';
 
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;

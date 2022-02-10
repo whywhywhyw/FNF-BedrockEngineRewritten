@@ -57,7 +57,6 @@ class ExtraMenuState extends MusicBeatState
 		#end
 
 		camGame = new FlxCamera();
-		Main.curStateS = 'ExtraMenuState';
 
 		FlxG.cameras.reset(camGame);
 		FlxCamera.defaultCameras = [camGame];
