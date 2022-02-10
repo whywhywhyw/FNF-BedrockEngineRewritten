@@ -187,7 +187,7 @@ class TitleState extends MusicBeatState
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
-			curWacky = ["public function", "my ass"];
+			curWacky = ["happy", "april fools"];
 
 		// DEBUG BULLSHIT
 
