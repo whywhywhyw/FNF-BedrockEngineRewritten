@@ -24,7 +24,7 @@ class CreditsState extends MusicBeatState
 {
 	public var curSelected:Int = -1;
 
-	public var warningText:FlxText;
+	public var warningDialogue:FunkinConfirm;
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private var iconArray:Array<AttachedSprite> = [];
@@ -36,7 +36,6 @@ class CreditsState extends MusicBeatState
 	var descText:FlxText;
 	var intendedColor:Int;
 	var colorTween:FlxTween;
-	var isVisible:Bool = false;
 
 	override function create()
 	{
@@ -359,8 +358,13 @@ class CreditsState extends MusicBeatState
 		descText.borderSize = 2.4;
 		add(descText);
 
-		warningText = new FlxText(0, 0, FlxG.width, "", 48);
-		add(warningText);
+		warningDialogue = new FunkinConfirm(null, "WARNING!!!", null, (action: FunkinConfirmAction) -> {
+			warningDialogue.hide();
+			if (action == FunkinConfirmAction.YES_BUTTON_PRESSED) {
+				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
+			}
+		});
+		add(warningDialogue);
 
 		bg.color = getCurrentBGColor();
 		intendedColor = bg.color;
@@ -370,17 +374,8 @@ class CreditsState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		warningText.screenCenter();
-		warningText.text = "WARNING!!!\nYOU ARE ABOUT TO GO TO: \n"
-			+ creditsStuff[curSelected][3] + "\nARE YOU ABSOLUTELY SURE YOU WANT TO GO TO THIS URL? \n(Y - Yes, N - No)";
-		warningText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		warningText.scrollFactor.set();
-		warningText.borderSize = 2;
-		warningText.visible = false;
-		if (isVisible)
-		{
-			warningText.visible = true;
-		}
+		warningDialogue.setText("YOU ARE ABOUT TO GO TO: \n"
+		+ creditsStuff[curSelected][3] + "\nARE YOU ABSOLUTELY SURE YOU WANT TO GO TO THIS URL? \n(Y - Yes, N - No, C - Close this window)");
 
 		if (FlxG.sound.music.volume < 0.7)
 		{
@@ -410,19 +405,7 @@ class CreditsState extends MusicBeatState
 		}
 		if (FlxG.keys.pressed.ENTER)
 		{
-			isVisible = true;
-		}
-		if (isVisible)
-		{
-			if (FlxG.keys.pressed.Y)
-			{
-				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
-				isVisible = false;
-			}
-			if (FlxG.keys.pressed.N)
-			{
-				isVisible = false;
-			}
+			warningDialogue.show();
 		}
 		super.update(elapsed);
 	}
@@ -439,6 +422,7 @@ class CreditsState extends MusicBeatState
 		} while(unselectableCheck(curSelected));
 
 		var newColor:Int =  getCurrentBGColor();
+		warningDialogue.setColor(FlxColor.fromInt(newColor));
 		if(newColor != intendedColor) {
 			if(colorTween != null) {
 				colorTween.cancel();
