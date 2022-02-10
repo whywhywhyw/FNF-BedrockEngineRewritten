@@ -58,9 +58,7 @@ class JsonEditor extends MusicBeatState
       public var savedir:String = "backup/uiBackup.txt";
       public var backup:String;
       public var gbackup:String;
-      public var nbackup:String;
       public var gsavedir:String = "backup/gameplayBackup.txt";
-      public var nsavedir:String = "backup/noteBackup.txt";
 
       //these will be content
       public var appearance:String;
@@ -102,11 +100,10 @@ class JsonEditor extends MusicBeatState
             gameplay = File.getContent(JsonSettings.dirtwo);
             note = File.getContent(JsonSettings.offdir);
             
-      if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir) && FileSystem.exists(nsavedir))
+      if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir))
       {
             backup = appearance;
             gbackup = gameplay;
-            nbackup = note;
       }
 
             /* if (FileSystem.exists("backup/") && !FileSystem.exists("backup/uiBackup.txt") && !FileSystem.exists("backup/gameplayBackup.txt"))
@@ -134,7 +131,6 @@ class JsonEditor extends MusicBeatState
 
             backup = File.getContent(savedir);
             gbackup = File.getContent(gsavedir);
-            nbackup = File.getContent(nsavedir);
 
             var tab_group = new FlxUI(null, UI_characterbox);
 		tab_group.name = "Appearance";
@@ -272,8 +268,8 @@ class JsonEditor extends MusicBeatState
             '
             {
                   "letterGrader":'+letterG+',
-	            "antiMash":'+mash+',
-	            "divider": "'+coolInput.text+'"
+                  "antiMash":'+mash+',
+                  "divider": "'+coolInput.text+'"
             }
             ';
             File.saveContent(JsonSettings.dirtwo, savegtext);
