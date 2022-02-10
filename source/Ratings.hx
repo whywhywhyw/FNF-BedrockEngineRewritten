@@ -3,13 +3,13 @@ package;
 class Ratings
 {
 	public static var ratingStuff:Array<Dynamic> = [
-		["F", 0.65], // 65%
-		["E", 0.700], // 70%
-		["D", 0.75], // 75%
-		["C", 0.80], // 80%
-		["B", 0.850], // 85%
-		["A", 0.900], // 90%
-		["S", 0.951], // 95%
+		["F", 0.2], // 65%
+		["E", 0.3], // 70%
+		["D", 0.4], // 75%
+		["C", 0.7], // 80%
+		["B", 0.8], // 85%
+		["A", 0.9], // 90%
+		["S", 0.9501], // 95%
 		["S+", 1] // 100%
 	];
 
@@ -39,20 +39,20 @@ class Ratings
 	];
 
 	public static var ratingSimple:Array<Dynamic> = [
-		["You Suck!", 0.001], // 0%
-		["Shit", 0.2], // 19%
+		["You Suck!", 0.2], // 19
+		["Shit", 0.3], // 29%
 		["Bad", 0.4], // 39%
-		["Eh", 0.6], // 59%
+		["Meh", 0.6], // 59%
 		["Okay", 0.69], // 68%
 		["Nice", 0.691], // 69%
-		["Cool", 0.8], // 79%
-		["Great!", 0.9], // 89%
+		["Good", 0.8], // 79%
+		["Great", 0.9], // 89%
 		["Sick!", 1], // 99%
 		["Perfect!!", 1] // 100%
 	];
 
 
     public static var errorRating:Array<Dynamic> = [
-		["NaN", 1]
+		["Error", 1]
 	];
 }
