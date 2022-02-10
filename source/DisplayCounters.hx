@@ -55,22 +55,22 @@ class DisplayCounters extends TextField
 			if(ClientPrefs.showFPS)
 				text += "FPS: " + times.length + "\n";
 
-			if(ClientPrefs.memCounter)
+			/*if(ClientPrefs.memCounter)
 				text += "Memory: " + mem + " mb" + "\n";
 
 			if(ClientPrefs.memPeak)
                 text += "Memory Peak: " + memPeak + " mb" + "\n";
 
 			if(ClientPrefs.showState)
-                text += "State: " + Main.curStateS;
+                text += "State: " + Main.curStateS;*/
 		}
 	}
 
 public static function updateDisplayInfo()
 	{
 		displayFps = ClientPrefs.showFPS;
-		displayState = ClientPrefs.showState;
+		/*displayState = ClientPrefs.showState;
 		displayMemory = ClientPrefs.memCounter;
-		displayPeak = ClientPrefs.memPeak;
+		displayPeak = ClientPrefs.memPeak;*/
 	}
 }
