@@ -90,7 +90,7 @@ class TitleState extends MusicBeatState
 	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
-		Main.curStateS = 'TitleState';
+		//Main.curStateS = 'TitleState';
 
 		#if MODS_ALLOWED
 		// Just to load a mod on start up if ya got one. For mods that change the menu music and bg
