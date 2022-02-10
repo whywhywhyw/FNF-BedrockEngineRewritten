@@ -105,8 +105,8 @@ class Song
 	{
 		var rawJson = null;
 		
-		var formattedFolder:String = Paths.formatToSongPath(folder);
-		var formattedSong:String = Paths.formatToSongPath(jsonInput);
+		var formattedFolder:String = Paths.formatToSongPath(folder.startsWith(CoolUtil.invisibleSongPrefix) ? folder.substring(CoolUtil.invisibleSongPrefix.length, folder.length) : folder);
+		var formattedSong:String = Paths.formatToSongPath(jsonInput.startsWith(CoolUtil.invisibleSongPrefix) ? jsonInput.substring(CoolUtil.invisibleSongPrefix.length, jsonInput.length) : jsonInput);
 		#if MODS_ALLOWED
 		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
 		if(FileSystem.exists(moddyFile)) {

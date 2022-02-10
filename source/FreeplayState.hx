@@ -82,7 +82,9 @@ class FreeplayState extends MusicBeatState
 				{
 					colors = [146, 113, 253];
 				}
-				addSong(song[0], i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
+				var name:String = song[0];
+				if (!name.startsWith(CoolUtil.invisibleSongPrefix))
+					addSong(name, i, song[1], FlxColor.fromRGB(colors[0], colors[1], colors[2]));
 			}
 		}
 		WeekData.setDirectoryFromWeek();
