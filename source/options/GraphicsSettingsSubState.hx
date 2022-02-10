@@ -37,7 +37,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		rpcTitle = 'Tweaking the Graphics'; //for Discord Rich Presence
 
 		var option:Option = new Option('Anti-Aliasing', 'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.', 'globalAntialiasing', 'bool', true);
-		option.showBoyfriend = true;
+		option.showBoyfriend = false;
 		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 
