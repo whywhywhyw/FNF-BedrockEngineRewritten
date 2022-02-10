@@ -185,23 +185,19 @@ this disables everything related to backgrounds and characters, leaving only the
 ![image](https://user-images.githubusercontent.com/45212377/151047810-9bb0c459-8714-41bd-b861-3d90e001ef9e.png)
 
 * S+  100% Accuracy.
-* S   99.9% Accuracy.
-* AAAA 99.1% Accuracy
-* AAA 99% Accuracy.
-* AA 	98.6% Accuracy.
-* B   80% Accuracy.
-* C   70% Accuracy.
-* D   40% Accuracy or below.
+* S   95% Accuracy.
+* A   90% Accuracy
+* B   85% Accuracy.
+* C   80% Accuracy.
+* D   75% Accuracy.
+* E   70% Accuracy.
+* F   65% Accuracy or below.
 
 Extra Grades
-* PFC - Full Combo with Only Marvelouses (Sicks if Marvelouses are disabled)
-* SFC - Full Combo with at least 1 Sick/Only Sicks (works if Marvelouses are Enabled)
-* GFC - Full Combo with at least 1 Good/Only Goods
-* FC - Full Combo with at least 1 Bad/Only Bads (only works on Simple Accuracy)
-* SDB - Single Digit Bad (at least 1 Bad/Only Bads, only works on Complex Accuracy)
-* SDS - Single Digit Shit (at least 1 Shit/Only Shits)
-* SDCB - Single Digit Combo Break (you missed at least once)
-* Clear - You missed at least 10 times
+* MFC - Full Combo with at least 1 Marvelous
+* SFC - Full Combo with at least 1 Sick
+* GFC - Full Combo with at least 1 Good
+* FC - Full Combo with at least 1 Bad/Shit
 
 ## Opponent Mode
 
@@ -213,15 +209,24 @@ can be enabled on the Gameplay Changers menu
 
 https://user-images.githubusercontent.com/45212377/151046841-dbbdb3e9-9491-4a51-81b6-f97976dabce7.mp4
 
-## Judgement Skins
-You can now Change your Judgements' Appearance with the new UI Skins
+## Customization Features
+You can now customize your notes, judgements, note splashes and even something insignificant
+like your dividers, all in one place, the Settings Menu!
 
-![image](https://user-images.githubusercontent.com/45212377/150618407-b18087c6-96d1-4968-9b4f-c4e3e20ab859.png)
-![image](https://user-images.githubusercontent.com/45212377/150618450-f25e5a73-2b2d-4304-ace9-5ae346a65c37.png)
+![image](https://user-images.githubusercontent.com/45212377/153362801-fa09bf76-863a-4fff-b1b6-2f7cba8a1d61.png)
 
-right now this feature is hardcoded, but I plan to make it softcoded soon
+Current Changeables:
+* Notes
+* Note Splashes
+* Judgements
+* Dividers (for the Info Bar)
 
-in case you wanna add your own, on source, go to PlayState.hx, search for switch ``(ClientPrefs.uiSkin)``, then add a new case with a new name ad folder attached to it
+Current Toggles:
+* Disable Winning Icons (old icon support)
+* Enable Letter Grades
+* Disable Antimash
+
+more features will be added to it in the future.
 
 ## Winning Icons
 
@@ -231,9 +236,3 @@ Template is on the assets/images/icons folder!
 
 ## and more!
 I will keep updating this fork as much as possible for it to be in sync with the main repository, and adding more features to it in the future!
-
-# Future Plans
-* Softcoded Judgement Skins
-* Noteskins on Options Menu
-* Separated Noteskins for each Player (already possible with lua so...)
-* Fix all current issues with Opponent Mode
