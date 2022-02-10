@@ -1,7 +1,7 @@
 # Friday Night Funkin' - Bedrock Engine!
 a fork of Psych Engine which adds a bunch of features from Pull Requests around the Main Branch, and even other forks!
 Credits:
-* [BURGER76920](https://github.com/ShadowMario/FNF-PsychEngine/pull/3891) - Json-editable Menus
+* [BURGER76920](https://github.com/ShadowMario/FNF-PsychEngine/pull/3891) - Json-editable Menus (deprecated, so it was removed for the time being)
 * [CerBor](https://github.com/ShadowMario/FNF-PsychEngine/pull/2896) - Difficulty Drop Down on Chart Menu
 * [HiroMizuki](https://github.com/ShadowMario/FNF-PsychEngine/pull/1792) - Pixel Note Splashes
 * [i-winxd](https://github.com/ShadowMario/FNF-PsychEngine/discussions/2917) - Kade Engine (Complex) Accuracy

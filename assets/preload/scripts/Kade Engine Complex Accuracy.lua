@@ -1,3 +1,5 @@
+-- SCRIPT BY I-WIN
+
 local a1 = 0.254829592;
 local a2 = -0.284496736;
 local a3 = 1.421413741;
@@ -6,6 +8,57 @@ local a5 = 1.061405429;
 local p = 0.3275911;
 local curTotalNotesHit = 0
 local counterUpdated = 0
+local actualRatingHere = 0.00
+local msDiffTimeLimit = 1200  -- how many ms after hitting a note should the ms rating disappear
+local lastMsShowUp = 0
+local msTextVisible = false
+
+
+function onCreate()
+    -- the 540 is the x pos of the text; the 360 is the y pos of the text. Note that y pos is from the top.
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
+    makeLuaText('msTxt', ' ', 0, 540, 360)
+    setTextSize('msTxt', 17)
+    setTextBorder('msTxt', 2, '000000')
+    setTextFont('msTxt', 'pixel.otf')
+    addLuaText('msTxt')
+    end
+
+
+function onUpdatePost(elapsed)
+	-- start of "update", some variables weren't updated yet
+    -- This updates the contents of the score text.
+    -- the rating name is not drawn from the game source.
+    -- debugPrint(curTotalNotesHit)
+
+    -- DETERMING WHETHER TO HIDE THE MS DIFF
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
+    local curSongPosRightNow = getPropertyFromClass('Conductor', 'songPosition')
+    if curSongPosRightNow - lastMsShowUp > msDiffTimeLimit and msTextVisible then
+        removeLuaText('msTxt', false)
+        setTextString('msTxt', '')
+        addLuaText('msTxt')
+        msTextVisible = false
+    end
+
+    -- UPDATING SCORETXT
+
+    if ratingName == '?' then
+        if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
+        local beforeScoreTxt = 'Score:0 - Accuracy:0.00% | N/A'
+        setProperty('scoreTxt.text', beforeScoreTxt)
+    else
+        local ratingNameM = getProperty('ratingFC')
+        local ratingFull = math.max(actualRatingHere * 100, 0)
+        local ratingFullAsStr = string.format("%.2f", ratingFull)
+
+        local tempRatingNameVery = accuracyToRatingString(ratingFull)
+        -- we can assert that ratingdec
+        local finalScoreTxt = 'Score:'..score..' - Accuracy:'..ratingFullAsStr..'% - ('..ratingNameM..') '..tempRatingNameVery
+        setProperty('scoreTxt.text', finalScoreTxt)
+    end
+end
+
 function goodNoteHit(id, direction, noteType, isSustainNote)
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     if not isSustainNote then
@@ -15,25 +68,79 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
         updateAccuracy(strumTime, songPos, rOffset)
     end
 end
-end
 
 function updateAccuracy(strumTime, songPos, rOffset) -- HELPER FUNCTION
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     local noteDiffSign = strumTime - songPos + rOffset
     local noteDiffAbs = math.abs(noteDiffSign)
     local totalNotesForNow = handleNoteDiff(noteDiffAbs)
-    local rawJudgements = cancelExistingJudgements(noteDiffAbs)
+    -- local rawJudgements = cancelExistingJudgements(noteDiffAbs)
+    -- debugPrint(rawJudgements)
+    -- local notesHitDiff = totalNotesForNow - rawJudgements
+    -- addHits(noteHitDiff)
+    showMsDiffOnScreen(noteDiffSign)
     curTotalNotesHit = curTotalNotesHit + totalNotesForNow
     counterUpdated = counterUpdated + 1
-    curAccuracy = curTotalNotesHit / counterUpdated
-    ratingStr = accuracyToRatingString(curAccuracy * 100)
-    setProperty('ratingPercent', math.max(0, curAccuracy))
-    setProperty('ratingName', ratingStr)
+    -- curAccuracy = curTotalNotesHit / counterUpdated
+    -- debugPrint(curTotalNotesHit)
+    -- setHits(curTotalNotesHit)
+    -- getProperty(totalNotesHit)
+    
+    -- debugPrint(curTotalNotesHit / counterUpdated)
+    actualRatingHere = curTotalNotesHit / counterUpdated
+    setProperty('ratingPercent', math.max(0, actualRatingHere))  -- we technically need this so the game accounts that for the high score
+    -- setRatingPercent(actualRatingHere)
+    
+    -- debugPrint(tln)
+    -- setProperty('totalNotesHit', curTotalNotesHit)
+    -- setProperty('totalPlayed', counterUpdated)
+
+    -- ratingStr = accuracyToRatingString(curAccuracy * 100)
+    -- setProperty('ratingPercent', math.max(0, curAccuracy))
+    -- setProperty('ratingName', ratingStr)
+end
+
+
+function showMsDiffOnScreen(diff)  -- remove everything in this function if you don't want ms timings.
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
+    removeLuaText('msTxt', false)
+    local msDiffStr = string.format("%.3fms", -diff)
+    -- debugPrint(msDiffStr)
+    local textColor = ratingTextColor(diff)
+    setTextColor('msTxt', textColor)
+    setTextString('msTxt', msDiffStr)
+    if diff > 399 then
+        setTextString('msTxt', '')
+    end
+
+    addLuaText('msTxt')
+    lastMsShowUp =  getPropertyFromClass('Conductor', 'songPosition')
+    msTextVisible = true
+
+    -- local msDiffStr = string.format("%.3f", diff)
+    -- msDiffStr = msDiffStr + 'ms'
+    -- debugPrint(msDiffStr)
+ 
+end
+
+
+function ratingTextColor(diff)
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
+    local absDiff = math.abs(diff)
+    
+    if absDiff < 46.0 then
+        return '00FFFF'
+    elseif absDiff < 91.0 then
+        return '008000'
+    else
+        return 'FF0000'
     end
 end
 
-function cancelExistingJudgements(diff)
-    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then -- HELPER FUNCTION
+
+
+function cancelExistingJudgements(diff) -- HELPER FUNCTION
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     if diff < 46.0 then
         return 1.0
     elseif diff < 91.0 then
@@ -44,46 +151,44 @@ function cancelExistingJudgements(diff)
         return 0.0
     end
 end
-end
 
 
 function accuracyToRatingString(accuracy) -- HELPER FUNCTION
     -- Please don't cancel me for repeat if else statements blame python 3.10 for not releasing sooner
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     if accuracy >= 99.9935 then
-        return '(AAAAA)'
+        return 'AAAAA'
     elseif accuracy >= 99.980 then
-        return '(AAAA:)'
+        return 'AAAA:'
     elseif accuracy >= 99.970 then
-        return '(AAAA.)'
+        return 'AAAA.'
     elseif accuracy >= 99.955 then
-        return '(AAAA)'
+        return 'AAAA'
     elseif accuracy >= 99.90 then
-        return '(AAA:)'
+        return 'AAA:'
     elseif accuracy >= 99.80 then
-        return '(AAA.)'
+        return 'AAA.'
     elseif accuracy >= 99.70 then
-        return '(AAA)'
+        return 'AAA'
     elseif accuracy >= 99 then
-        return '(AA:)'
+        return 'AA:'
     elseif accuracy >= 96.50 then
-        return '(AA.)'
+        return 'AA.'
     elseif accuracy >= 93 then
-        return '(AA)'
+        return 'AA'
     elseif accuracy >= 90 then
-        return '(A:)'
+        return 'A:'
     elseif accuracy >= 85 then
-        return '(A.)'
+        return 'A.'
     elseif accuracy >= 80 then
-        return '(A)'
+        return 'A'
     elseif accuracy >= 70 then
-        return '(B)'
+        return 'B'
     elseif accuracy >= 60 then
-        return '(C)'
+        return 'C'
     else
-        return '(D)'
+        return 'D'
     end
-end
 end
 
 function handleNoteDiff(diff) -- HELPER FUNCTION
@@ -110,7 +215,6 @@ function handleNoteDiff(diff) -- HELPER FUNCTION
         return miss_weight
     end
 end
-end
 
 function erf(x)  -- HELPER FUNCTION
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
@@ -124,16 +228,13 @@ function erf(x)  -- HELPER FUNCTION
 
     return sign * y;
 end
-end
 
 function noteMissPress(direction)
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     updateAccuracy(400, 0, 0)
-    end
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     updateAccuracy(400, 0, 0)
-    end
 end
