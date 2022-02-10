@@ -75,6 +75,10 @@ class ClientPrefs {
 	public static var showSongDisplay:Bool = true;
 	public static var showWatermarks:Bool = true;
 	public static var judgCounter:Bool = true;
+	public static var maniaMode:Bool = false;
+	public static var bgAlpha:Bool = false;
+	public static var dynamicCam:Bool = false;
+	public static var useClassicSongs:Bool = false;
 
 	// Added by Bedrock Engine (via Pull Requests)
 	public static var marvelouses:Bool = true;
@@ -153,10 +157,7 @@ class ClientPrefs {
 		FlxG.save.data.hideGf = hideGf;
 		FlxG.save.data.lowEndMode = lowEndMode;
 		FlxG.save.data.strumLineAlpha = strumLineAlpha;
-		FlxG.save.data.uiSkin = uiSkin;
-		FlxG.save.data.judgCounters = judgCounters;
 		FlxG.save.data.timeBarUi = timeBarUi;
-		FlxG.save.data.noteSkin = noteSkin;
 		FlxG.save.data.underlay = underlay;
 		FlxG.save.data.keAccuracy = keAccuracy;
 		FlxG.save.data.noteGlow = noteGlow;
@@ -300,17 +301,8 @@ class ClientPrefs {
 		if (FlxG.save.data.strumLineAlpha != null) {
 			strumLineAlpha = FlxG.save.data.strumLineAlpha;
 		}
-		if (FlxG.save.data.uiSkin != null) {
-			uiSkin = FlxG.save.data.uiSkin;
-		}
 		if (FlxG.save.data.timeBarUi != null) {
 			timeBarUi = FlxG.save.data.timeBarUi;
-		}
-		if (FlxG.save.data.noteSkin != null) {
-			noteSkin = FlxG.save.data.noteSkin;
-		}
-		if (FlxG.save.data.judgCounters != null) {
-			judgCounters = FlxG.save.data.judgCounters;
 		}
 		if (FlxG.save.data.noteGlow != null) {
 			noteGlow = FlxG.save.data.noteGlow;

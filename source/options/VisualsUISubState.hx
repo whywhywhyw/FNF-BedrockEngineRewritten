@@ -201,11 +201,6 @@ class VisualsUISubState extends BaseOptionsMenu
 		super();
 	}
 
-	function onChangeNoteSkin()
-	{
-		updateNotes();
-	}
-
 	#if !mobile
 	function onChangeFPSCounter()
 	{

@@ -1047,10 +1047,6 @@ class EditorPlayState extends MusicBeatState
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 		super.destroy();
 	}
 }
