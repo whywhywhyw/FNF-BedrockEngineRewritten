@@ -1,0 +1,6 @@
+titleText is the first half of the introduction text
+while wtitleText is the second one
+
+they can only be Six Lines long, anything after that makes it so it doesn't show up
+
+they are unused because they break the old introText
