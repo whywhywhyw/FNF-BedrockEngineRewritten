@@ -1,0 +1,55 @@
+DO NOT PUT YOUR SKINS TO ASSETS, BEDROCK WILL IGNORE ASSETS FOLDER IF YOU DON'T MESS WITH SOURCE
+
+
+more options will be ported to these jsons if needed.
+
+------------------UI------------------
+
+iconSupport means 300x150 icon support.
+those icons need to be placed on mods/images/icons-old
+
+
+NOTE SKINS
+
+Available note skins are:
+-NOTE_assets
+-NOTE_circle
+-NOTE_bar
+-NOTE_diamond
+-NOTE_step
+-NOTE_simplyarrow
+
+you can also add your own noteskins
+just place them on "mods/images/noteskins"
+
+if a skin doesn't have a pixel variant, pixel stages will crash
+so make sure to create or copy any existing skin to mods/pixelUI/noteskins so your noteskin won't crash
+
+JUDGEMENT SKINS
+
+Available judgement skins are:
+
+-classic
+-bedrock
+
+You can also add your own judgement skins,
+just place them on "mods/images/judgements".
+
+At the moment, botplay crashes no matter which noteskins or judgement skin you are using, this will be fixed soon.
+
+-------GAMEPLAY SETTINGS-------
+
+LETTER GRADERS
+
+letterGrader on true means that the game will use Letter Ratings.
+Example, if accuracy is below 20% rank will be 'D'.
+letterGrader on false means game will use original ratings.
+Example, if accuracy is below 20% rank will be 'You suck!'.
+
+DIVIDERS
+
+divider means that the info bar will show the specific separator you set yourself.
+For example, if it's set as
+"divider": "//", info bar will be like this:
+
+"Score: // Accuracy: // Rank:".
