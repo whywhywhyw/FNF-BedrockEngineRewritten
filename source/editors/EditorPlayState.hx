@@ -582,7 +582,7 @@ class EditorPlayState extends MusicBeatState
 				//var notesDatas:Array<Int> = [];
 				var notesStopped:Bool = false;
 
-				trace('test!');
+				//trace('test!');
 				var sortedNotesList:Array<Note> = [];
 				notes.forEachAlive(function(daNote:Note)
 				{
@@ -590,7 +590,7 @@ class EditorPlayState extends MusicBeatState
 					{
 						if(daNote.noteData == key && !daNote.isSustainNote)
 						{
-							trace('pushed note!');
+							//trace('pushed note!');
 							sortedNotesList.push(daNote);
 							//notesDatas.push(daNote.noteData);
 						}
@@ -672,7 +672,6 @@ class EditorPlayState extends MusicBeatState
 
 	private function keyShit():Void
 	{
-
 		// HOLDING
 		var up = controls.NOTE_UP;
 		var right = controls.NOTE_RIGHT;
@@ -1048,7 +1047,10 @@ class EditorPlayState extends MusicBeatState
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 		super.destroy();
 	}
 }

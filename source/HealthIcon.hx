@@ -1,6 +1,5 @@
 package;
 
-import flixel.math.FlxMath;
 import flixel.FlxSprite;
 import openfl.utils.Assets as OpenFlAssets;
 
@@ -72,8 +71,7 @@ class HealthIcon extends FlxSprite
 			this.char = char;
 
 			antialiasing = ClientPrefs.globalAntialiasing;
-			if (char.endsWith('-pixel'))
-			{
+			if(char.endsWith('-pixel')) {
 				antialiasing = false;
 			}
 		}

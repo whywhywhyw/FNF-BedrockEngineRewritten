@@ -34,9 +34,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		title = 'Gameplay Settings';
 		rpcTitle = 'Adjusting the Gameplay Settings'; //for Discord Rich Presence
 
-		var option:Option = new Option('Center Notes', 'If checked, your notes get centered.', 'middleScroll', 'bool', false);
-	addOption(option);
-
 		var Option = new Option('Complex Accuracy', "If checked, the accuracy will follow a harsher system, Based on Etterna and Kade Engine", 'keAccuracy', 'bool', false);
 	addOption(Option);
 
@@ -61,6 +58,9 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 	addOption(option);
 
 		var option:Option = new Option('Marvelous Ratings', 'If unchecked, marvelous ratings will disappear.', 'marvelouses', 'bool', true);
+	addOption(option);
+
+		var option:Option = new Option('Middlescroll', 'If checked, your notes get centered.', 'middleScroll', 'bool', false);
 	addOption(option);
 
 		var option:Option = new Option('Play Hit Sounds', "If checked, will play a sound when you hit a note", 'playHitSounds', 'bool', false);

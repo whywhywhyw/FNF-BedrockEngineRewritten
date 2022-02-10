@@ -61,8 +61,8 @@ class OptionsState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.color = 0xFFea71fd;
-		bg.setGraphicSize(Std.int(bg.width * 1.1*scaleRatio));
 		bg.updateHitbox();
+
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
@@ -112,10 +112,6 @@ class OptionsState extends MusicBeatState
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
 		}
-
-		/*if (FlxG.keys.justPressed.RIGHT) {
-			LoadingState.loadAndSwitchState(new OptionsStatePageTwo());
-		}*/
 	}
 	
 	function changeSelection(change:Int = 0) {

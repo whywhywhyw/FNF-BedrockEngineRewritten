@@ -14,7 +14,7 @@ class ClientPrefs {
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
-	public static var framerate:Int = 120;
+	public static var framerate:Int = 60;
 	public static var cursing:Bool = true;
 	public static var violence:Bool = true;
 	public static var camZooms:Bool = true;
@@ -28,10 +28,6 @@ class ClientPrefs {
 	public static var noReset:Bool = false;
 	public static var healthBarAlpha:Float = 1;
 	public static var controllerMode:Bool = false;
-	public static var screenRes:String = "1280 x 720";
-	public static var screenResTemp:String = "1280 x 720"; // dummy value that isn't saved, used so that if the player cancels instead of hitting space the resolution isn't applied
-	public static var screenScaleMode:String = "Letterbox";
-	public static var screenScaleModeTemp:String = "Letterbox";
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
 		'scrolltype' => 'multiplicative', 
@@ -54,7 +50,6 @@ class ClientPrefs {
 	];
 
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
-	public static var keSustains:Bool = false; //i was bored, okay?
 	
 	public static var ratingOffset:Int = 0;
 	public static var marvelousWindow:Int = 25;
@@ -69,14 +64,7 @@ class ClientPrefs {
 	public static var playHitSounds:Bool = false;
 	public static var lightcpustrums:Bool = true;
 	public static var hideGf:Bool = false;
-	#if PSYCH_WATERMARKS
-	public static var uiSkin:String = 'Bedrock';
-	#else
-	public static var uiSkin:String = 'Classic';
-	#end
-	public static var judgCounters:String = 'Left';
 	public static var timeBarUi:String = 'Psych Engine';
-	public static var noteSkin:String = 'Default';
 	public static var lowEndMode:Bool = false;
 	public static var strumLineAlpha:Float = 1;
 	public static var underlay:Float = 0;
@@ -123,11 +111,6 @@ class ClientPrefs {
 		defaultKeys = keyBinds.copy();
 		//trace(defaultKeys);
 	}
-	public static function resizeScreen() {
-		if(FlxG.save.data.screenRes != null) {
-			screenRes = FlxG.save.data.screenRes;
-		}
-	}
 
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
@@ -161,15 +144,12 @@ class ClientPrefs {
 		FlxG.save.data.safeFrames = safeFrames;
 		FlxG.save.data.gameplaySettings = gameplaySettings;
 		FlxG.save.data.controllerMode = controllerMode;
-		FlxG.save.data.screenRes = screenRes;
-		FlxG.save.data.screenScaleMode = screenScaleMode;
 
 		// Added by Bedrock Engine 
 		FlxG.save.data.maxOptimization = maxOptimization;
 		FlxG.save.data.playMissSounds = playMissSounds;
 		FlxG.save.data.playHitSounds = playHitSounds;
 		FlxG.save.data.lightcpustrums = lightcpustrums;
-		//FlxG.save.data.infoSize = infoSize;
 		FlxG.save.data.hideGf = hideGf;
 		FlxG.save.data.lowEndMode = lowEndMode;
 		FlxG.save.data.strumLineAlpha = strumLineAlpha;
@@ -290,12 +270,6 @@ class ClientPrefs {
 		if(FlxG.save.data.controllerMode != null) {
 			controllerMode = FlxG.save.data.controllerMode;
 		}
-		if(FlxG.save.data.screenRes != null) {
-			screenRes = FlxG.save.data.screenRes;
-		}
-		if(FlxG.save.data.screenScaleMode != null) {
-			screenScaleMode = FlxG.save.data.screenScaleMode;
-		}
 		if(FlxG.save.data.gameplaySettings != null)
 		{
 			var savedMap:Map<String, Dynamic> = FlxG.save.data.gameplaySettings;
@@ -409,6 +383,7 @@ class ClientPrefs {
 		FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
 		FlxG.sound.volumeUpKeys = TitleState.volumeUpKeys;
 	}
+<<<<<<< HEAD
 	public static function getResolution():Array<Int>{
 		var res = ClientPrefs.screenRes.split(" x ");
 		
@@ -418,6 +393,8 @@ class ClientPrefs {
 		
 		return [Std.parseInt(res[0]),Std.parseInt(res[1])];
 	}
+=======
+>>>>>>> c8bd1c10fafc322a1d63881598fe2c4cc695f8ba
 	public static function copyKey(arrayToCopy:Array<FlxKey>):Array<FlxKey> {
 		var copiedArray:Array<FlxKey> = arrayToCopy.copy();
 		var i:Int = 0;
