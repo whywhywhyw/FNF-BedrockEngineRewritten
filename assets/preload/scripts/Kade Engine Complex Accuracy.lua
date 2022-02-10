@@ -13,7 +13,6 @@ local msDiffTimeLimit = 1200  -- how many ms after hitting a note should the ms 
 local lastMsShowUp = 0
 local msTextVisible = false
 
-
 function onCreate()
     -- the 540 is the x pos of the text; the 360 is the y pos of the text. Note that y pos is from the top.
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
@@ -23,7 +22,7 @@ function onCreate()
     setTextFont('msTxt', 'pixel.otf')
     addLuaText('msTxt')
     end
-
+end
 
 function onUpdatePost(elapsed)
 	-- start of "update", some variables weren't updated yet
@@ -40,6 +39,7 @@ function onUpdatePost(elapsed)
         addLuaText('msTxt')
         msTextVisible = false
     end
+end
 
     -- UPDATING SCORETXT
 
@@ -56,6 +56,7 @@ function onUpdatePost(elapsed)
         -- we can assert that ratingdec
         local finalScoreTxt = 'Score:'..score..' - Accuracy:'..ratingFullAsStr..'% - ('..ratingNameM..') '..tempRatingNameVery
         setProperty('scoreTxt.text', finalScoreTxt)
+        end
     end
 end
 
@@ -66,6 +67,7 @@ function goodNoteHit(id, direction, noteType, isSustainNote)
         songPos = getPropertyFromClass('Conductor', 'songPosition')
         rOffset = getPropertyFromClass('ClientPrefs','ratingOffset')
         updateAccuracy(strumTime, songPos, rOffset)
+        end
     end
 end
 
@@ -98,6 +100,7 @@ function updateAccuracy(strumTime, songPos, rOffset) -- HELPER FUNCTION
     -- ratingStr = accuracyToRatingString(curAccuracy * 100)
     -- setProperty('ratingPercent', math.max(0, curAccuracy))
     -- setProperty('ratingName', ratingStr)
+    end
 end
 
 
@@ -112,7 +115,9 @@ function showMsDiffOnScreen(diff)  -- remove everything in this function if you 
     if diff > 399 then
         setTextString('msTxt', '')
     end
+end
 
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     addLuaText('msTxt')
     lastMsShowUp =  getPropertyFromClass('Conductor', 'songPosition')
     msTextVisible = true
@@ -120,7 +125,7 @@ function showMsDiffOnScreen(diff)  -- remove everything in this function if you 
     -- local msDiffStr = string.format("%.3f", diff)
     -- msDiffStr = msDiffStr + 'ms'
     -- debugPrint(msDiffStr)
- 
+    end
 end
 
 
@@ -134,10 +139,9 @@ function ratingTextColor(diff)
         return '008000'
     else
         return 'FF0000'
+        end
     end
 end
-
-
 
 function cancelExistingJudgements(diff) -- HELPER FUNCTION
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
@@ -149,9 +153,9 @@ function cancelExistingJudgements(diff) -- HELPER FUNCTION
         return 0.5
     else
         return 0.0
+        end
     end
 end
-
 
 function accuracyToRatingString(accuracy) -- HELPER FUNCTION
     -- Please don't cancel me for repeat if else statements blame python 3.10 for not releasing sooner
@@ -188,6 +192,7 @@ function accuracyToRatingString(accuracy) -- HELPER FUNCTION
         return 'C'
     else
         return 'D'
+        end
     end
 end
 
@@ -213,6 +218,7 @@ function handleNoteDiff(diff) -- HELPER FUNCTION
         return (maxms - zero) * miss_weight / (max_boo_weight - zero)
     else
         return miss_weight
+        end
     end
 end
 
@@ -222,19 +228,24 @@ function erf(x)  -- HELPER FUNCTION
     if (x < 0) then
         sign = -1;
     end
+end
+    if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     x = math.abs(x);
     local t = 1.0 / (1.0 + p * x);
     local y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * math.exp(-x * x);
 
     return sign * y;
+    end
 end
 
 function noteMissPress(direction)
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     updateAccuracy(400, 0, 0)
+    end
 end
 
 function noteMiss(id, direction, noteType, isSustainNote)
     if getPropertyFromClass('ClientPrefs', 'keAccuracy', true) then
     updateAccuracy(400, 0, 0)
+    end
 end
