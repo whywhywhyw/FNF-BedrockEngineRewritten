@@ -102,6 +102,7 @@
 	<assets path='example_mods' rename='mods' embed='false' if="MODS_ALLOWED"/>
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
 	<assets path='example_settings' rename='settings' embed='false'/>
+	<assets path='backup' rename='backup' embed='false'/>
 	<!-- <template path='mods' /> -->
 	
 	<!-- assets path="CHANGELOG.md" rename='changelog.txt' -->
