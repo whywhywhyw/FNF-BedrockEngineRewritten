@@ -22,6 +22,7 @@ typedef WeekFile =
 	var weekName:String;
 	var freeplayColor:Array<Int>;
 	var startUnlocked:Bool;
+	var shownInTracks:Bool;
 	var hideStoryMode:Bool;
 	var hideFreeplay:Bool;
 	var difficulties:String;
@@ -41,6 +42,7 @@ class WeekData {
 	public var weekName:String;
 	public var freeplayColor:Array<Int>;
 	public var startUnlocked:Bool;
+	public var shownInTracks:Bool;
 	public var hideStoryMode:Bool;
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
@@ -55,6 +57,7 @@ class WeekData {
 			weekName: 'Custom Week',
 			freeplayColor: [146, 113, 253],
 			startUnlocked: true,
+			shownInTracks: true,
 			hideStoryMode: false,
 			hideFreeplay: false,
 			difficulties: ''

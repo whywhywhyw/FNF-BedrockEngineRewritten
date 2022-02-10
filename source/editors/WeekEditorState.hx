@@ -207,7 +207,7 @@ class WeekEditorState extends MusicBeatState
 			weekFile.hideStoryMode = hideCheckbox.checked;
 		};
 
-		tab_group.add(new FlxText(songsInputText.x, songsInputText.y - 18, 0, 'Songs:'));
+		tab_group.add(new FlxText(songsInputText.x, songsInputText.y - 18, 0, 'Songs: (type ' + CoolUtil.invisibleSongPrefix + ' before song to hide it)'));
 		tab_group.add(new FlxText(opponentInputText.x, opponentInputText.y - 18, 0, 'Characters:'));
 		tab_group.add(new FlxText(backgroundInputText.x, backgroundInputText.y - 18, 0, 'Background Asset:'));
 		tab_group.add(new FlxText(displayNameInputText.x, displayNameInputText.y - 18, 0, 'Display Name:'));
@@ -229,6 +229,7 @@ class WeekEditorState extends MusicBeatState
 
 	var weekBeforeInputText:FlxUIInputText;
 	var difficultiesInputText:FlxUIInputText;
+	var showSongInStoryMode:FlxUICheckBox;
 	var lockedCheckbox:FlxUICheckBox;
 
 	function addOtherUI() {
@@ -248,12 +249,19 @@ class WeekEditorState extends MusicBeatState
 		difficultiesInputText = new FlxUIInputText(10, weekBeforeInputText.y + 60, 200, '', 8);
 		blockPressWhileTypingOn.push(difficultiesInputText);
 		
+		showSongInStoryMode = new FlxUICheckBox(10, difficultiesInputText.y + 60, null, null, "Hidden songs are shown in tracks", 100);
+		showSongInStoryMode.callback = () -> {
+			weekFile.shownInTracks = showSongInStoryMode.checked;
+			updateText();
+		};
+		
 		tab_group.add(new FlxText(weekBeforeInputText.x, weekBeforeInputText.y - 28, 0, 'Week File name of the Week you have\nto finish for Unlocking:'));
 		tab_group.add(new FlxText(difficultiesInputText.x, difficultiesInputText.y - 20, 0, 'Difficulties:'));
 		tab_group.add(new FlxText(difficultiesInputText.x, difficultiesInputText.y + 20, 0, 'Default difficulties are "Easy, Normal, Hard"\nwithout quotes.'));
 		tab_group.add(weekBeforeInputText);
 		tab_group.add(difficultiesInputText);
 		tab_group.add(lockedCheckbox);
+		tab_group.add(showSongInStoryMode);
 		UI_box.addGroup(tab_group);
 	}
 
@@ -278,6 +286,7 @@ class WeekEditorState extends MusicBeatState
 		weekBeforeInputText.text = weekFile.weekBefore;
 
 		difficultiesInputText.text = '';
+		showSongInStoryMode.checked = weekFile.shownInTracks;
 		if(weekFile.difficulties != null) difficultiesInputText.text = weekFile.difficulties;
 
 		lockedCheckbox.checked = !weekFile.startUnlocked;
@@ -302,7 +311,11 @@ class WeekEditorState extends MusicBeatState
 		txtTracklist.text = '';
 		for (i in 0...stringThing.length)
 		{
-			txtTracklist.text += stringThing[i] + '\n';
+			if (!stringThing[i].startsWith(CoolUtil.invisibleSongPrefix))
+				txtTracklist.text += stringThing[i] + '\n';
+			else
+				if (weekFile.shownInTracks)
+					txtTracklist.text += (stringThing[i].startsWith(CoolUtil.invisibleSongPrefix) ? stringThing[i].substring(CoolUtil.invisibleSongPrefix.length, stringThing[i].length) : stringThing[i]) + '\n';
 		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
@@ -594,21 +607,24 @@ class WeekEditorFreeplayState extends MusicBeatState
 
 		for (i in 0...weekFile.songs.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, weekFile.songs[i][0], true, false);
-			songText.isMenuItem = true;
-			songText.targetY = i;
-			grpSongs.add(songText);
+			var name:String = weekFile.songs[i][0];
+			if (!name.startsWith(CoolUtil.invisibleSongPrefix)) {
+				var songText:Alphabet = new Alphabet(0, (70 * i) + 30, weekFile.songs[i][0], true, false);
+				songText.isMenuItem = true;
+				songText.targetY = i;
+				grpSongs.add(songText);
 
-			var icon:HealthIcon = new HealthIcon(weekFile.songs[i][1]);
-			icon.sprTracker = songText;
+				var icon:HealthIcon = new HealthIcon(weekFile.songs[i][1]);
+				icon.sprTracker = songText;
 
-			// using a FlxGroup is too much fuss!
-			iconArray.push(icon);
-			add(icon);
+				// using a FlxGroup is too much fuss!
+				iconArray.push(icon);
+				add(icon);
 
-			// songText.x += 40;
-			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			// songText.screenCenter(X);
+				// songText.x += 40;
+				// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
+				// songText.screenCenter(X);
+			}
 		}
 
 		addEditorBox();
@@ -738,10 +754,18 @@ class WeekEditorFreeplayState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		curSelected += change;
+		
+		var count:Int = 0;
+		for (i in 0...weekFile.songs.length) {
+			trace (weekFile.songs[i][0]);
+			var name:String = weekFile.songs[i][0];
+			if (!name.startsWith(CoolUtil.invisibleSongPrefix))
+				count++;
+		}
 
 		if (curSelected < 0)
-			curSelected = weekFile.songs.length - 1;
-		if (curSelected >= weekFile.songs.length)
+			curSelected = count - 1;
+		if (curSelected >= count)
 			curSelected = 0;
 
 		var bullShit:Int = 0;

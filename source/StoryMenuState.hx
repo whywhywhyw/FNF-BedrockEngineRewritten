@@ -452,7 +452,11 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.text = '';
 		for (i in 0...stringThing.length)
 		{
-			txtTracklist.text += stringThing[i] + '\n';
+			if (!stringThing[i].startsWith(CoolUtil.invisibleSongPrefix))
+				txtTracklist.text += stringThing[i] + '\n';
+			else
+				if (leWeek.shownInTracks)
+					txtTracklist.text += (stringThing[i].startsWith(CoolUtil.invisibleSongPrefix) ? stringThing[i].substring(1, stringThing[i].length) : stringThing[i]) + '\n';
 		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
