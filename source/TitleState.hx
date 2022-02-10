@@ -186,6 +186,9 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
+		if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+			curWacky = ["public function", "my ass"];
+
 		// DEBUG BULLSHIT
 
 		swagShader = new ColorSwap();
@@ -254,6 +257,8 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
+		else if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+			FlxG.sound.playMusic(Paths.music('freakyFroggy'), 0);
 		}
 		/*else if (!initialized && ClientPrefs.useClassicSongs)
 		{
@@ -261,6 +266,8 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenuC'), 0);
 			}
+		else if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+			FlxG.sound.playMusic(Paths.music('freakyFroggy'), 0);
 		}*/
 
 		Conductor.changeBPM(titleJSON.bpm);
