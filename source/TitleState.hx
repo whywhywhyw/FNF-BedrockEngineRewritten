@@ -184,10 +184,10 @@ class TitleState extends MusicBeatState
 
 		PlayerSettings.init();
 
-		curWacky = FlxG.random.getObject(getIntroTextShit());
-
 		if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
 			curWacky = ["happy", "april fools"];
+		else
+			curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
@@ -255,10 +255,11 @@ class TitleState extends MusicBeatState
 		{
 			if (FlxG.sound.music == null)
 			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+				if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+					FlxG.sound.playMusic(Paths.music('frogMenu'), 0);
+				else
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
-		else if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
-			FlxG.sound.playMusic(Paths.music('freakyFroggy'), 0);
 		}
 		/*else if (!initialized && ClientPrefs.useClassicSongs)
 		{
@@ -654,9 +655,15 @@ class TitleState extends MusicBeatState
 				case 1:
 					{
 						FlxG.sound.music.stop();
-						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+						if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+							FlxG.sound.playMusic(Paths.music('frogMenu'), 0);
+						else
+							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 						/*if(ClientPrefs.useClassicSongs)
+							if (Date.now().getMonth() == 4 && Date.now().getDate() == 1)
+							FlxG.sound.playMusic(Paths.music('frogMenu'), 0);
+						else
 							FlxG.sound.playMusic(Paths.music('freakyMenuC'), 0);*/
 
 						FlxG.sound.music.fadeIn(5, 0, 0.7);
