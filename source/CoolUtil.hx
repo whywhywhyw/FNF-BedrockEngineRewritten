@@ -24,6 +24,8 @@ class CoolUtil
 	public static var defaultDifficulty:String = 'Normal'; //The chart that has no suffix and starting difficulty on Freeplay/Story Mode
 
 	public static var difficulties:Array<String> = [];
+	
+	public static var invisibleSongPrefix:String = '$';
 
 	public static function getDifficultyFilePath(num:Null<Int> = null)
 	{
