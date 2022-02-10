@@ -308,21 +308,21 @@ class TitleState extends MusicBeatState
 		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
 
 		#if (desktop && MODS_ALLOWED)
-		var path = "mods/" + Paths.currentModDirectory + "/images/GF_ass_sets.png";
+		var path = "mods/" + Paths.currentModDirectory + "/images/gfDanceTitle.png";
 		// trace(path, FileSystem.exists(path));
 		if (!FileSystem.exists(path))
 		{
-			path = "mods/images/GF_ass_sets.png";
+			path = "mods/images/gfDanceTitle.png";
 			// trace(path, FileSystem.exists(path));
 		}
 		if (!FileSystem.exists(path))
 		{
-			path = "assets/images/GF_ass_sets.png";
+			path = "assets/images/gfDanceTitle.png";
 			// trace(path, FileSystem.exists(path));
 		}
 		gfDance.frames = FlxAtlasFrames.fromSparrow(BitmapData.fromFile(path), File.getContent(StringTools.replace(path, ".png", ".xml")));
 		#else
-		gfDance.frames = Paths.getSparrowAtlas('GF_ass_sets');
+		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		#end
 		gfDance.animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);

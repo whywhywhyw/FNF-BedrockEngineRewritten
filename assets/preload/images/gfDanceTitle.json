@@ -6,5 +6,6 @@
 	"gfx":512,
 	"gfy":40,
 	"backgroundSprite":"",
-	"bpm":136
+	"bpm":136,
+	"cbpm":102
 }
