@@ -143,7 +143,7 @@ class PlayState extends MusicBeatState
 	public var laneunderlayOpponent:FlxSprite;
 
 	public var strumLineNotes:FlxTypedGroup<StrumNote>;
-	public var opponentStrums:FlxTypedGroup<StrumNote>;
+	public var opponentStrums:FlxTypedGroup<OpponentStrum>;
 	public var playerStrums:FlxTypedGroup<StrumNote>;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
 
@@ -1048,7 +1048,7 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.0;
 
-		opponentStrums = new FlxTypedGroup<StrumNote>();
+		opponentStrums = new FlxTypedGroup<OpponentStrum>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
 
 		// startCountdown();
