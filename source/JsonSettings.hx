@@ -167,13 +167,13 @@ class JsonSettings
                 {
                     if  (logs < 16)
                      trace("did you really think you could abuse dividers LMAO");
-                    divider = ' - ';
+                    divider = '-';
                 }
                 
                 if (dividerTEMPLATE==null)
                 {
-                    divider = " - ";
-                    if (FlxG.random.bool(0.1)) //this has a little chance to happen
+                    divider = "-";
+                    if (FlxG.random.bool(10)) //this had %0.1 chance to appear, nerfed it
                     {
                         if (FileSystem.exists("settings/lmao.log"))
                         {
@@ -182,7 +182,7 @@ class JsonSettings
                         }
                         else
                             File.saveContent("settings/lmao.log", "did you really think you could make noteskins null? LMFAO someone thought about this already dumbass");
-                        divider = " permission-denied ";
+                        divider = "permission-denied";
                     }
                 }
             }
