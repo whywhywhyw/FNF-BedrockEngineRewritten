@@ -1,5 +1,10 @@
 package;
 
+import meta.state.MusicBeatState;
+import meta.state.menus.StoryMenuState;
+import meta.state.menus.FreeplayState;
+import meta.state.PlayState;
+import meta.CoolUtil;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -10,11 +15,6 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-
-import meta.state.MusicBeatState;
-import meta.state.StoryMenuState;
-import meta.state.FreeplayState;
-import meta.state.PlayState;
 
 class GameOverSubstate extends MusicBeatSubstate
 {

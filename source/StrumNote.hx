@@ -1,9 +1,9 @@
 package;
 
+import meta.state.PlayState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
-import meta.state.PlayState;
 
 using StringTools;
 

@@ -65,6 +65,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+import meta.state.menus.*;
+
 using StringTools;
 
 class PlayState extends MusicBeatState

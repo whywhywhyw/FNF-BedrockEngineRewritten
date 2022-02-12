@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.MusicBeatState;
+import meta.state.TitleState;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -30,9 +32,6 @@ import lime.system.Clipboard;
 #if sys
 import sys.io.File;
 #end
-
-import meta.state.MusicBeatState;
-import meta.state.TitleState;
 
 using StringTools;
 

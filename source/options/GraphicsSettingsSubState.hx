@@ -1,5 +1,6 @@
 package options;
 
+import meta.Controls;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -24,7 +25,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
-import Controls;
 import openfl.Lib;
 
 using StringTools;

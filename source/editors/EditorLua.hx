@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.PlayState;
+import meta.Controls;
 #if LUA_ALLOWED
 import llua.Lua;
 import llua.LuaL;
@@ -24,14 +26,11 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 import Type.ValueType;
-import Controls;
 import DialogueBoxPsych;
 
 #if desktop
 import Discord;
 #end
-
-import meta.state.PlayState;
 
 using StringTools;
 

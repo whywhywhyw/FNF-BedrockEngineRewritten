@@ -1,12 +1,11 @@
 package;
 
+import meta.Controls;
+import meta.state.*;
 import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
-import Controls;
-
-import meta.state.*;
 
 class ClientPrefs {
 	public static var downScroll:Bool = false;
@@ -78,7 +77,7 @@ class ClientPrefs {
 	public static var showWatermarks:Bool = true;
 	public static var judgCounter:Bool = true;
 	public static var maniaMode:Bool = false;
-	public static var bgAlpha:Bool = false;
+	public static var bgAlpha:Float = 0;
 	public static var dynamicCam:Bool = false;
 	public static var useClassicSongs:Bool = false;
 
@@ -168,6 +167,10 @@ class ClientPrefs {
 		FlxG.save.data.showSongDisplay = showSongDisplay;
 		FlxG.save.data.showWatermarks = showWatermarks;
 		FlxG.save.data.judgCounter = judgCounter;
+		FlxG.save.data.maniaMode = maniaMode;
+		FlxG.save.data.bgAlpha = bgAlpha;
+		FlxG.save.data.dynamicCam = dynamicCam;
+		FlxG.save.data.useClassicSongs = useClassicSongs;
 
 		// Added by Bedrock Engine (via Pull Requests)
 		FlxG.save.data.marvelousWindow = marvelousWindow;
@@ -329,6 +332,18 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.judgCounter != null) {
 			judgCounter = FlxG.save.data.judgCounter;
+		}
+		if(FlxG.save.data.maniaMode != null) {
+			maniaMode = FlxG.save.data.judgCoumaniaModenter;
+		}
+		if(FlxG.save.data.bgAlpha != null) {
+			bgAlpha = FlxG.save.data.bgAlpha;
+		}
+		if(FlxG.save.data.dynamicCam != null) {
+			dynamicCam = FlxG.save.data.dynamicCam;
+		}
+		if(FlxG.save.data.useClassicSongs != null) {
+			useClassicSongs = FlxG.save.data.useClassicSongs;
 		}
 		
 		// Added by Bedrock Engine (via Pull Requests)

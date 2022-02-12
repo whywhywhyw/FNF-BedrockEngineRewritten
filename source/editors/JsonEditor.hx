@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.MusicBeatState;
+import meta.state.menus.ExtraMenuState;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -19,9 +21,6 @@ import flixel.addons.ui.FlxUITabMenu;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-
-import meta.state.MusicBeatState;
-import meta.state.ExtraMenuState;
 
 using StringTools;
 

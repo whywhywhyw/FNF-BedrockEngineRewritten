@@ -1,5 +1,6 @@
 package;
 
+import meta.CoolUtil;
 import flixel.math.FlxMath;
 import flixel.FlxSprite;
 import openfl.utils.Assets as OpenFlAssets;

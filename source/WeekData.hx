@@ -1,5 +1,7 @@
 package;
 
+import meta.state.PlayState;
+import meta.CoolUtil;
 #if MODS_ALLOWED
 import sys.io.File;
 import sys.FileSystem;
@@ -10,8 +12,6 @@ import haxe.Json;
 import haxe.format.JsonParser;
 
 using StringTools;
-
-import meta.state.PlayState;
 
 typedef WeekFile =
 {

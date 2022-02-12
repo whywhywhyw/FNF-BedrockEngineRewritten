@@ -1,4 +1,4 @@
-package;
+package meta;
 
 import haxe.Timer;
 import openfl.Lib;

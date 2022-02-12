@@ -1,5 +1,6 @@
 package editors;
 
+import meta.state.menus.*;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -15,8 +16,6 @@ import flixel.system.FlxSound;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
-
-import meta.state.*;
 
 using StringTools;
 

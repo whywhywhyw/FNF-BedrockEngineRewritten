@@ -1,6 +1,6 @@
 package;
 
-import Controls;
+import meta.Controls;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxSignal;

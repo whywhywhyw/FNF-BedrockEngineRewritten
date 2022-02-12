@@ -1,5 +1,8 @@
 package editors;
 
+import meta.state.MusicBeatState;
+import meta.state.PlayState;
+import meta.state.LoadingState;
 import Section.SwagSection;
 import Song.SwagSong;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -19,10 +22,6 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
 import FunkinLua;
-
-import meta.state.MusicBeatState;
-import meta.state.PlayState;
-import meta.state.LoadingState;
 
 using StringTools;
 

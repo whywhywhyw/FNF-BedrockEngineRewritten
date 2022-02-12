@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.*;
+import meta.CoolUtil;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -50,8 +52,6 @@ import sys.io.File;
 import sys.FileSystem;
 import flash.media.Sound;
 #end
-
-import meta.state.*;
 
 using StringTools;
 

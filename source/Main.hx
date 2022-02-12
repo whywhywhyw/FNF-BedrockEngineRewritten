@@ -1,5 +1,7 @@
 package;
 
+import meta.state.TitleState;
+import meta.DisplayCounters;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxGame;
@@ -10,8 +12,6 @@ import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-
-import meta.state.TitleState;
 
 	/*Information about the new Folder System 
 	new states always go to "meta/state", if they aren't there

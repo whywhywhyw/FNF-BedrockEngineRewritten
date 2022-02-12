@@ -1,5 +1,6 @@
 package;
 
+import meta.state.PlayState;
 import animateatlas.AtlasFrameMaker;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -17,8 +18,6 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets;
 import haxe.Json;
 import haxe.format.JsonParser;
-
-import meta.state.PlayState;
 
 using StringTools;
 

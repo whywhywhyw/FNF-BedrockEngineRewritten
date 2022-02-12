@@ -1,4 +1,4 @@
-package meta.state;
+package meta.state.menus;
 
 #if desktop
 import Discord.DiscordClient;

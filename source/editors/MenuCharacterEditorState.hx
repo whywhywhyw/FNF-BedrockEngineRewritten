@@ -1,5 +1,6 @@
 package editors;
 
+import meta.state.*;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -29,8 +30,6 @@ import haxe.Json;
 #if sys
 import sys.io.File;
 #end
-
-import meta.state.*;
 
 using StringTools;
 

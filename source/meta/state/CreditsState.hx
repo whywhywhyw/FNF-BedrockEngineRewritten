@@ -19,6 +19,8 @@ import sys.io.File;
 #end
 import lime.utils.Assets;
 
+import meta.state.menus.MainMenuState;
+
 using StringTools;
 
 class CreditsState extends MusicBeatState

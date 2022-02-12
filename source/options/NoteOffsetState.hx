@@ -1,5 +1,6 @@
 package options;
 
+import meta.state.*;
 import flixel.util.FlxStringUtil;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -13,8 +14,6 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.ui.FlxBar;
 import flixel.math.FlxPoint;
-
-import meta.state.*;
 
 using StringTools;
 

@@ -1,5 +1,6 @@
 package;
 
+import meta.Controls;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.FlxSubState;

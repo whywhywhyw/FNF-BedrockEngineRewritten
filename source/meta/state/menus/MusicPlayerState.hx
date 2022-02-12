@@ -1,4 +1,4 @@
-package meta.state;
+package meta.state.menus;
 
 // da imports
 import openfl.display.Tile;

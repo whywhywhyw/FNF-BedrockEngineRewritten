@@ -37,6 +37,9 @@ import flixel.util.FlxGradient;
 import lime.app.Application;
 import openfl.Assets;
 
+import meta.state.menus.MainMenuState;
+import meta.state.menus.StoryMenuState;
+
 using StringTools;
 typedef TitleData =
 {

@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.*;
+import meta.CoolUtil;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -32,8 +34,6 @@ import sys.io.File;
 import sys.FileSystem;
 #end
 import WeekData;
-
-import meta.state.*;
 
 using StringTools;
 

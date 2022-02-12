@@ -1,3 +1,9 @@
+import meta.state.MusicBeatState;
+import meta.state.PlayState;
+import meta.state.menus.MainMenuState;
+import meta.state.menus.StoryMenuState;
+import meta.state.menus.FreeplayState;
+import meta.CoolUtil;
 #if LUA_ALLOWED
 import llua.Lua;
 import llua.LuaL;
@@ -33,18 +39,12 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 import Type.ValueType;
-import Controls;
+import meta.Controls;
 import DialogueBoxPsych;
 
 #if desktop
 import Discord;
 #end
-
-import meta.state.MusicBeatState;
-import meta.state.PlayState;
-import meta.state.MainMenuState;
-import meta.state.StoryMenuState;
-import meta.state.FreeplayState;
 
 using StringTools;
 

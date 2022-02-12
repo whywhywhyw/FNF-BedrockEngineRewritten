@@ -1,5 +1,7 @@
 package editors;
 
+import meta.state.*;
+import meta.CoolUtil;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -37,8 +39,6 @@ import flixel.animation.FlxAnimation;
 #if MODS_ALLOWED
 import sys.FileSystem;
 #end
-
-import meta.state.*;
 
 using StringTools;
 

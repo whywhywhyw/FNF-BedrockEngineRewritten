@@ -1,5 +1,6 @@
 package options;
 
+import meta.Controls;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -23,7 +24,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
-import Controls;
 
 using StringTools;
 
@@ -129,6 +129,15 @@ class VisualsUISubState extends BaseOptionsMenu
 		true
 	);
 	addOption(option);
+
+		var option:Option = new Option('Background Opacity:', 'How much opaque the background should be?', 'bgAlpha', 'float', true);
+		option.displayFormat = '%v';
+		option.scrollSpeed = 100;
+		option.changeValue = 0.1;
+		option.decimals = 1;
+		option.minValue = 0;
+		option.maxValue = 1;
+		addOption(option);
 
 		var option:Option = new Option
 		(

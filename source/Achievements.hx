@@ -1,3 +1,5 @@
+import meta.state.*;
+import meta.CoolUtil;
 import flixel.graphics.FlxGraphic;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -14,8 +16,6 @@ import sys.io.File;
 import haxe.Json;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
-
-import meta.state.*;
 
 using StringTools;
 
