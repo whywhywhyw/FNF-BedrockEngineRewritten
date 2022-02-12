@@ -6,13 +6,17 @@ import sys.io.File;
 #end
 import haxe.Json;
 import flixel.FlxG;
+import meta.*;
+
 
 class JsonSettings
-
 {
 
-    public static var logs:Int = 0; 
+    //use this to call the function: JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+    //NOTE TO SELF YOU DO NOT NEED TO IMPORT THIS YOU DUMBASS
+
     //this is used for log counts
+    public static var logs:Int = 0; 
 
     //readme stuff
     public static var read:String = "settings/do-READ-me.txt";
@@ -24,17 +28,11 @@ class JsonSettings
 
     //ui settings 
     public static var iconSupport:Bool;
-    public static var noteSkin:String;
-    public static var noteSplashSkin:String;
     public static var judgementSkin:String;
 
-    //offsets, (working this time)
-
-    public static var marvWindow:Int;
-    public static var sickWindow:Int;
-    public static var goodWindow:Int;
-    public static var badWindow:Int;
-    //public static var shitWindow:Int = 135;
+    //note settings
+    public static var noteSkin:String;
+    public static var noteSplashSkin:String;
 
     //gameplay settings 
     public static var divider:String;
@@ -50,71 +48,61 @@ class JsonSettings
     public static var dirmod:String = "mods/settings/settings.json";
     #end
 
-    public static function offdev(offdir:String)
+    public static function setJson(offdir:String, dir:String, dirtwo:String)
     {
-        if (FileSystem.exists(offdir))
+        #if sys
+        if (FileSystem.exists(offdir) && FileSystem.exists(dir) && FileSystem.exists(dirtwo))
         {
             offset = File.getContent(offdir);
-            if (offset != null && offset.length > 0)
+            customJson = File.getContent(dirtwo);
+            customGame = File.getContent(dir);
+
+            if (customJson != null && customJson.length > 4 && customGame != null && customGame.length > 4 && offset != null && offset.length > 4)
             {
                 logs++;
 
                 var piss:Dynamic = Json.parse(offset);
+                var shit:Dynamic = Json.parse(customGame);
+                var poop:Dynamic = Json.parse(customJson);
 
-                var marv = Reflect.getProperty(piss, "marvOffset");
-                var sick = Reflect.getProperty(piss, "sickOffset");
-                var good = Reflect.getProperty(piss, "goodOffset");
-                var bad =  Reflect.getProperty(piss, "badOffset");
-
+                //////////////////////////NOTE//////////////////////////////////
                 var noteSplashSkinTEMPLATE:String = Reflect.getProperty(piss, "noteSplashSkin");
                 var noteSkinTEMPLATE:String = Reflect.getProperty(piss, "noteSkin");
 
                 noteSkin = noteSkinTEMPLATE;
                 noteSplashSkin = noteSplashSkinTEMPLATE;
 
-                //prevent people to abuse it
-                if (marv < 1 || marv > 45)
-                    marvWindow = 25;
-                if (sick < 5 || sick > 75)
-                    sickWindow = 45;
-                if (good < 10 || good > 135)
-                    goodWindow = 90;
-                if (bad < 15 || bad > 180)
-                    badWindow = 135;
-
-                /*
-                need to properly remove offsets
-                because they are kinda buggy for now lol
-                - Gui iago
-                */
-
                 if (noteSkinTEMPLATE == null || noteSkinTEMPLATE.length < 0)
-                    {
-                    if (logs < 11)
-                    trace("invalid note skin, reverting back to the defaults.");
+                {
+                    if (logs <= 10)
+                        trace("invalid note skin, reverting back to the defaults.");
                     noteSkin = 'NOTE_assets';
-                    }
+                }
     
                 if (noteSplashSkinTEMPLATE == null || noteSplashSkinTEMPLATE.length < 0)
                 {
-                    if (logs < 11)
-                    trace("invalid note splash, reverting back to the defaults.");
+                    if (logs <= 10)
+                        trace("invalid note splash, reverting back to the defaults.");
                     noteSplashSkin = 'noteSplashes';
                 }
-            }
-        }
-    }
 
-    public static function devtwo(dirtwo:String)
-    {
-        if (FileSystem.exists(dirtwo))
-        {
-            customJson = File.getContent(dirtwo);
-            if (customJson != null && customJson.length > 0)
-            {
-                logs++;
+                ///////////////////////////////UI///////////////////////////////////////
 
-                var poop:Dynamic = Json.parse(customJson);
+                var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
+				var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
+
+                judgementSkin = judgementSkinTEMPLATE;
+                iconSupport = iconSupportTEMPLATE;
+
+                if (judgementSkinTEMPLATE == null || judgementSkinTEMPLATE.length < 0)
+                {
+                   if (logs <= 10) 
+                    trace("invalid judgement skin, reverting back to the defaults.");
+                   judgementSkin = 'bedrock';
+                }
+
+                ///////////////////////////////GAMEPLAY//////////////////////////////////////
+
                 var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
 				var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
 				var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
@@ -123,11 +111,9 @@ class JsonSettings
                 antiMash = antiMashTEMPLATE;
                 divider = dividerTEMPLATE;
 
-               // trace(antiMash + divider + letterGrader);
-
                 if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6)
                 {
-                    if  (logs < 16)
+                    if  (logs <= 15)
                      trace("did you really think you could abuse dividers LMAO");
                     divider = '-';
                 }
@@ -135,11 +121,11 @@ class JsonSettings
                 if (dividerTEMPLATE==null)
                 {
                     divider = "-";
-                    if (FlxG.random.bool(10)) //this had %0.1 chance to appear, nerfed it
+                    if (FlxG.random.bool(10)) //this has %10 percent chance to happen
                     {
                         if (FileSystem.exists("settings/lmao.log"))
                         {
-                            if (logs < 31)
+                            if (logs <= 30)
                                 trace("you already got this one lmao");
                         }
                         else
@@ -149,34 +135,8 @@ class JsonSettings
                 }
             }
         }
+        #end
     }
-
-    public static function dev(dir:String)
-    {
-        if (FileSystem.exists(dir))
-        {
-            customGame = File.getContent(dir);
-            if (customGame != null && customGame.length > 0)
-            {
-                logs++;
-
-                var shit:Dynamic = Json.parse(customGame);
-                var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
-				var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
-
-                judgementSkin = judgementSkinTEMPLATE;
-                iconSupport = iconSupportTEMPLATE;
-
-                if (judgementSkinTEMPLATE == null || judgementSkinTEMPLATE.length < 0)
-                {
-                   if (logs < 11) 
-                    trace("invalid judgement skin, reverting back to the defaults.");
-                   judgementSkin = 'bedrock';
-                }
-            }
-        }
-    }
-
    
 
     //use this on your mods and add your options 

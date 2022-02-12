@@ -1,8 +1,8 @@
 package;
 
-import meta.CoolUtil;
 import flixel.math.FlxMath;
 import flixel.FlxSprite;
+import meta.*;
 import openfl.utils.Assets as OpenFlAssets;
 import haxe.Json;
 import haxe.format.JsonParser;
@@ -55,16 +55,19 @@ class HealthIcon extends FlxSprite
 			changeIcon('bf');
 	}
 
-	private var iconOffsets:Array<Float> = [0, 0, 0];
+	private var iconOffsets:Array<Float> = [0, 0];
 
 	public function changeIcon(char:String) // this should stay like this until i find a way to softcode
 	{
-		JsonSettings.dev(JsonSettings.dir);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 		if (this.char != char)
 		{
-			
+			#if sys
 			if (!JsonSettings.iconSupport)
 			{
+				iconOffsets = [0, 0, 0];
 				var name:String = 'icons/' + char;
 				if (!Paths.fileExists('images/' + name + '.png', IMAGE))
 					name = 'icons/icon-' + char; // Older versions of psych engine's support
@@ -91,7 +94,6 @@ class HealthIcon extends FlxSprite
 			}
 			else
 			{
-				iconOffsets = [0, 0];
 				var name:String = 'icons-old/' + char;
 				if (!Paths.fileExists('images/' + name + '.png', IMAGE))
 					name = 'icons-old/icon-' + char;
@@ -115,6 +117,31 @@ class HealthIcon extends FlxSprite
 					antialiasing = false;
 				}
 			}
+			#else
+			var name:String = 'icons/' + char;
+				if (!Paths.fileExists('images/' + name + '.png', IMAGE))
+					name = 'icons/icon-' + char; // Older versions of psych engine's support
+				if (!Paths.fileExists('images/' + name + '.png', IMAGE))
+					name = 'icons/icon-face'; // Prevents crash from missing icon
+				var file:Dynamic = Paths.image(name);
+
+				loadGraphic(file); // Load stupidly first for getting the file size
+				loadGraphic(file, true, Math.floor(width / 3), Math.floor(height)); // Then load it fr
+				iconOffsets[0] = (width - 150) / 3;
+				iconOffsets[1] = (width - 150) / 3;
+				iconOffsets[1] = (width - 150) / 3;
+				updateHitbox();
+
+				animation.add(char, [0, 1, 2], 0, false, isPlayer);
+				animation.play(char);
+				this.char = char;
+
+				antialiasing = ClientPrefs.globalAntialiasing;
+				if (char.endsWith('-pixel'))
+				{
+					antialiasing = false;
+				}
+			#end
 		}
 	}
 

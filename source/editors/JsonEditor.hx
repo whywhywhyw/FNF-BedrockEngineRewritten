@@ -1,14 +1,11 @@
 package editors;
 
-import meta.state.MusicBeatState;
-import meta.state.menus.ExtraMenuState;
 #if desktop
 import Discord.DiscordClient;
-#end
-
 #if sys
 import sys.io.File;
 import sys.FileSystem;
+#end
 #end
 import flixel.FlxG;
 import flixel.addons.ui.FlxUICheckBox;
@@ -21,6 +18,8 @@ import flixel.addons.ui.FlxUITabMenu;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
+import meta.*;
+import meta.state.*;
 
 using StringTools;
 
@@ -73,7 +72,7 @@ class JsonEditor extends MusicBeatState
        /*reminder to all devs: this state has broken boxes for the note section and
 		gameplay section, do not try to use it until it's completely fixed
 		- Gui iago*/
-
+      #if sys
      override public function create()
       {
             var ctrltext:FlxText = new FlxText(0, 40, FlxG.width, "", 20);
@@ -100,19 +99,18 @@ class JsonEditor extends MusicBeatState
 		UI_characterbox.scrollFactor.set();
 		add(UI_characterbox);
 
-            JsonSettings.dev(JsonSettings.dir);
-            
-            
+            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
             appearance = File.getContent(JsonSettings.dir);
             gameplay = File.getContent(JsonSettings.dirtwo);
             note = File.getContent(JsonSettings.offdir);
+           
             
       if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir))
       {
             backup = appearance;
             gbackup = gameplay;
       }
-
+            
             /* if (FileSystem.exists("backup/") && !FileSystem.exists("backup/uiBackup.txt") && !FileSystem.exists("backup/gameplayBackup.txt"))
                   ididyourmom = true;
             else
@@ -136,6 +134,7 @@ class JsonEditor extends MusicBeatState
             icon = JsonSettings.iconSupport;
             judgement = JsonSettings.judgementSkin;
 
+            
             backup = File.getContent(savedir);
             gbackup = File.getContent(gsavedir);
 
@@ -289,7 +288,7 @@ class JsonEditor extends MusicBeatState
                         gameplay = '{
                         "letterGrader":true,
                         "antiMash":true,
-                        "divider": " - "
+                        "divider": "-"
                         }';
                   }          
             }
@@ -315,4 +314,5 @@ class JsonEditor extends MusicBeatState
                   File.saveContent(JsonSettings.offdir, saventext);
             }
       }
+      #end
 }

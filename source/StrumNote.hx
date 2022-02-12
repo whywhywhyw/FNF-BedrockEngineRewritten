@@ -1,9 +1,10 @@
 package;
 
-import meta.state.PlayState;
+import meta.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+import meta.state.PlayState;
 
 using StringTools;
 
@@ -35,7 +36,13 @@ class StrumNote extends FlxSprite
 		this.noteData = leData;
 		super(x, y);
 
-		var skin:String = 'NOTE_assets';
+		var skin:String = null;
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		skin = 'noteSkins/' + JsonSettings.noteSkin;
+		#else
+		skin = 'noteSkins/NOTE_assets';
+		#end 
 		if(PlayState.SONG.arrowSkin != null && PlayState.SONG.arrowSkin.length > 1) skin = PlayState.SONG.arrowSkin;
 		texture = skin; //Load texture and anims
 

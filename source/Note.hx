@@ -1,6 +1,6 @@
 package;
 
-import meta.state.PlayState;
+import meta.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -8,6 +8,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flash.display.BitmapData;
 import editors.ChartingState;
+import meta.state.PlayState;
 
 using StringTools;
 
@@ -237,8 +238,14 @@ class Note extends FlxSprite
 		var skin:String = texture;
 		if(texture.length < 1) {
 			skin = PlayState.SONG.arrowSkin;
-			if(skin == null || skin.length < 1) {
-				skin = 'NOTE_assets';
+			if(skin == null || skin.length < 1) 
+			{
+				#if sys
+				JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+				skin = 'noteSkins/' + JsonSettings.noteSkin;
+				#else
+				skin = "noteSkins/NOTE_assets";
+				#end
 			}
 		}
 

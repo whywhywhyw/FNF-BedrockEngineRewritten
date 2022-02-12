@@ -1,9 +1,11 @@
 package;
 
-import meta.state.PlayState;
+import meta.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+
+import meta.state.PlayState;
 
 class NoteSplash extends FlxSprite
 {
@@ -15,6 +17,10 @@ class NoteSplash extends FlxSprite
 		super(x, y);
 
 		var skin:String = 'splashSkins/noteSplashes';
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		skin = 'splashSkins/' + JsonSettings.noteSplashSkin;
+		#end
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 
 		loadAnims(skin);
@@ -31,7 +37,12 @@ class NoteSplash extends FlxSprite
 		alpha = 0.6;
 
 		if(texture == null) {
+			#if sys
+			JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+			texture = 'splashSkins/' + JsonSettings.noteSplashSkin;
+			#else
 			texture = 'splashSkins/noteSplashes';
+			#end
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
 		}
 

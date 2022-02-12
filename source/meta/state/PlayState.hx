@@ -1,5 +1,8 @@
 package meta.state;
 
+import meta.*;
+import meta.state.menus.*;
+import meta.state.*;
 import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
@@ -64,8 +67,6 @@ import Shaders;
 import sys.FileSystem;
 import sys.io.File;
 #end
-
-import meta.state.menus.*;
 
 using StringTools;
 
@@ -1246,7 +1247,9 @@ class PlayState extends MusicBeatState
 		judgementCounter.scrollFactor.set();
 		judgementCounter.screenCenter(Y);
 
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 
 		// Just in case.
 		if (ClientPrefs.marvelouses)
@@ -2622,7 +2625,10 @@ class PlayState extends MusicBeatState
 			iconP1.swapOldIcon();
 	}*/
 
-	JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
+
 		if (cpuControlled && !alreadyChanged)
 		{
 			scoreTxt.visible = false;
@@ -2804,11 +2810,17 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 
 		// Info Bar
 		var ratingNameTwo:String = ratingName;
+		#if sys
 		var divider:String = ' '+JsonSettings.divider+' ';
+		#else
+		var divider:String = "-";
+		#end
 
 		scoreTxt.text = 'Score: ' + songScore;
 		scoreTxt.text += divider + 'Accuracy:' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%';
@@ -2870,20 +2882,24 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		JsonSettings.dev(JsonSettings.dir);
-
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 		if (healthBar.percent < 20)
 		{
 			(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 1;
 			(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 2;
+			#if sys
 			if (JsonSettings.iconSupport)
 			{
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 1;
 				(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 0;
 			}
+			#end
 		}
 		else if (healthBar.percent > 85)
 		{
+			#if sys
 			if (!JsonSettings.iconSupport)
 			{
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 2;
@@ -2891,9 +2907,12 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+			#end
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 0;
 				(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 1;
+			#if sys
 			}
+			#end
 		}
 		else
 		{
@@ -4169,7 +4188,9 @@ class PlayState extends MusicBeatState
 		if (daRating == (ClientPrefs.marvelouses ? 'marvelous' : 'sick') && !note.noteSplashDisabled)
 			spawnNoteSplashOnNote(note, false);
 	
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 
 		if (!practiceMode && !cpuControlled)
 		{
@@ -4200,12 +4221,15 @@ class PlayState extends MusicBeatState
 
 
 
-		var uiSkin:String = '';
+		var uiSkin:String = null;
 		var altPart:String = isPixelStage ? '-pixel' : '';
 
-		JsonSettings.dev(JsonSettings.dir);
-
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 		uiSkin = JsonSettings.judgementSkin;
+		#else
+		uiSkin = 'bedrock';
+		#end
 
 		rating.loadGraphic(Paths.image(getUiSkin(uiSkin, daRating, altPart)));
 		rating.cameras = [camHUD];
@@ -4325,7 +4349,9 @@ class PlayState extends MusicBeatState
 
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 		var eventKey:FlxKey = event.keyCode;
 		var key:Int = getKeyFromEvent(eventKey);
 		// trace('Pressed: ' + eventKey);
@@ -4355,7 +4381,11 @@ class PlayState extends MusicBeatState
 							sortedNotesList.push(daNote);
 							// notesDatas.push(daNote.noteData);
 						}
-						if (JsonSettings.antiMash) canMiss = true;
+						canMiss = true;
+						#if sys
+						JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+						canMiss = JsonSettings.antiMash;
+						#end
 					}
 				});
 				sortedNotesList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
@@ -4896,8 +4926,13 @@ class PlayState extends MusicBeatState
 
 	public function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null, opponent:Bool = true)
 	{
-		JsonSettings.offdev(JsonSettings.offdir);
-		var skin:String = JsonSettings.noteSplashSkin;
+		var skin:String = null;
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		skin = JsonSettings.noteSplashSkin;
+		#else
+		skin = "noteSplashes";
+		#end
 		if (PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0)
 			skin = PlayState.SONG.splashSkin;
 
@@ -5359,7 +5394,9 @@ class PlayState extends MusicBeatState
 		setOnLuas('misses', songMisses);
 		setOnLuas('hits', songHits);
 
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 
 		var ret:Dynamic = callOnLuas('onRecalculateRating', []);
 		if (ret != FunkinLua.Function_Stop)
@@ -5373,13 +5410,18 @@ class PlayState extends MusicBeatState
 			// Rating Name
 			if (ratingPercent >= 1)
 			{
+				#if sys
 				if (JsonSettings.letterGrader)
 					ratingName = Ratings.ratingStuff[Ratings.ratingStuff.length - 1][0]; // Uses last string
 				else
 					ratingName = Ratings.ratingSimple[Ratings.ratingSimple.length - 1][0];
+				#else
+				ratingName = Ratings.ratingStuff[Ratings.ratingStuff.length - 1][0];
+				#end
 			}
 			else
 			{
+				#if sys
 				if (JsonSettings.letterGrader)
 				{
 					for (i in 0...Ratings.ratingStuff.length - 1)
@@ -5393,6 +5435,7 @@ class PlayState extends MusicBeatState
 				}
 		        else
 				{
+				#end
 					for (i in 0...Ratings.ratingSimple.length - 1)
 					{
 						if (ratingPercent < Ratings.ratingSimple[i][1])
@@ -5401,7 +5444,9 @@ class PlayState extends MusicBeatState
 							break;
 						}
 					}
+				#if sys
 				}
+				#end
 			}
 
 			// Rating FC
@@ -5425,7 +5470,9 @@ class PlayState extends MusicBeatState
 			the first to have the stars idea, check them out!
 			https://github.com/nebulazorua/andromeda-engine*/
 		}
-		JsonSettings.devtwo(JsonSettings.dirtwo);
+		#if sys
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		#end
 
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
