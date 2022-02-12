@@ -18,8 +18,8 @@ import flixel.addons.ui.FlxUITabMenu;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
-import meta.*;
 import meta.state.*;
+import meta.state.menus.*;
 
 using StringTools;
 
@@ -212,14 +212,19 @@ class JsonEditor extends MusicBeatState
             group_two.add(oof);
             group_two.add(anti);
             UI_characterbox.addGroup(group_two);
-            UI_characterbox.addGroup(note_group);
+            
+            note_group.add(na);
+            note_group.add(ney);
+            note_group.add(text);
+            note_group.add(texttwo);
+            UI_characterbox.addGroup.(note_group);
 
             super.create();
       }
 
       override public function update(elapsed:Float)
       {
-            JsonSettings.dev(JsonSettings.dir);
+            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 
             if (FlxG.keys.justPressed.ESCAPE) {
                   MusicBeatState.switchState(new ExtraMenuState());
@@ -230,7 +235,7 @@ class JsonEditor extends MusicBeatState
             DiscordClient.changePresence("Editing JSON Preferences", null);
             #end
 
-            JsonSettings.dev(JsonSettings.dir);
+            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
            
             if (appearance == null || gameplay == null)
             {
