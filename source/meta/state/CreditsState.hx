@@ -1,4 +1,4 @@
-package;
+package meta.state;
 
 #if desktop
 import Discord.DiscordClient;

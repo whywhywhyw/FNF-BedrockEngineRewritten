@@ -11,6 +11,8 @@ import haxe.format.JsonParser;
 
 using StringTools;
 
+import meta.state.PlayState;
+
 typedef WeekFile =
 {
 	// JSON variables

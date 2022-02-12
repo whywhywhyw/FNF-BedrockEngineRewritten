@@ -10,6 +10,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+import meta.state.PlayState;
+
 using StringTools;
 
 class DialogueBox extends FlxSpriteGroup

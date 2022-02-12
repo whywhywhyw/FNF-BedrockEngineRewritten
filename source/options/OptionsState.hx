@@ -25,6 +25,8 @@ import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
 
+import meta.state.*;
+
 using StringTools;
 
 class OptionsState extends MusicBeatState

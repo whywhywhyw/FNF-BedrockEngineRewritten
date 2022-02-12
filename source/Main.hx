@@ -11,6 +11,20 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 
+import meta.state.TitleState;
+
+	/*Information about the new Folder System 
+	new states always go to "meta/state", if they aren't there
+	files will try to read them on the Source folder, they may fail on doing so
+	almost every file has at least PlayState imported, so it's not a big deal
+	for starters, create a new State inside "meta/state" then on the targets
+	add "import meta.state.YourState;" anywhere on the imports
+	it should work without any problems, but in case you get 1 or more errors about
+	other States being missing, try to import them too, or just import
+	the entire state directory with "import meta.state.*"
+	
+	more files will be moved to these folders eventually*/
+
 class Main extends Sprite
 {
 	public static var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).

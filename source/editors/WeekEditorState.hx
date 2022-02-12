@@ -33,6 +33,8 @@ import sys.FileSystem;
 #end
 import WeekData;
 
+import meta.state.*;
+
 using StringTools;
 
 class WeekEditorState extends MusicBeatState

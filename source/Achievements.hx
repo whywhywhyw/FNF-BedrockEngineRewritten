@@ -15,6 +15,8 @@ import haxe.Json;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFlAssets;
 
+import meta.state.*;
+
 using StringTools;
 
 typedef AchievementFile =

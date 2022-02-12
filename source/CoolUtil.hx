@@ -12,6 +12,8 @@ import sys.FileSystem;
 import openfl.utils.Assets;
 #end
 
+import meta.state.PlayState;
+
 using StringTools;
 
 class CoolUtil

@@ -6,6 +6,8 @@ import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
 
+import meta.state.*;
+
 class ClientPrefs {
 	public static var downScroll:Bool = false;
 	public static var middleScroll:Bool = false;

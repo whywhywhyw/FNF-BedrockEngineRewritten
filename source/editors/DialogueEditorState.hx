@@ -31,6 +31,9 @@ import lime.system.Clipboard;
 import sys.io.File;
 #end
 
+import meta.state.MusicBeatState;
+import meta.state.TitleState;
+
 using StringTools;
 
 class DialogueEditorState extends MusicBeatState

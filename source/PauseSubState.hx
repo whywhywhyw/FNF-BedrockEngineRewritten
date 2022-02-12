@@ -14,6 +14,8 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 
+import meta.state.*;
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;

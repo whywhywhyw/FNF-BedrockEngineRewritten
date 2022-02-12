@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+import meta.state.PlayState;
+
 class NoteSplash extends FlxSprite
 {
 	public var colorSwap:ColorSwap = null;

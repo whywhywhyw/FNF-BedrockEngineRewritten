@@ -31,6 +31,8 @@ import DialogueBoxPsych;
 import Discord;
 #end
 
+import meta.state.PlayState;
+
 using StringTools;
 
 class EditorLua {

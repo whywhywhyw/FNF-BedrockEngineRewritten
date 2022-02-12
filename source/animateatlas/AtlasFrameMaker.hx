@@ -1,4 +1,6 @@
 package animateatlas;
+
+import meta.state.PlayState;
 import flixel.util.FlxDestroyUtil;
 import openfl.geom.Rectangle;
 import flixel.math.FlxPoint;

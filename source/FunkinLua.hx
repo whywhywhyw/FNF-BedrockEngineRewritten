@@ -40,6 +40,12 @@ import DialogueBoxPsych;
 import Discord;
 #end
 
+import meta.state.MusicBeatState;
+import meta.state.PlayState;
+import meta.state.MainMenuState;
+import meta.state.StoryMenuState;
+import meta.state.FreeplayState;
+
 using StringTools;
 
 class FunkinLua {

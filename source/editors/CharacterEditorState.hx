@@ -38,6 +38,8 @@ import flixel.animation.FlxAnimation;
 import sys.FileSystem;
 #end
 
+import meta.state.*;
+
 using StringTools;
 
 /**

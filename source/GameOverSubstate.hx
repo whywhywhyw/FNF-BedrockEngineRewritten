@@ -11,6 +11,11 @@ import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
+import meta.state.MusicBeatState;
+import meta.state.StoryMenuState;
+import meta.state.FreeplayState;
+import meta.state.PlayState;
+
 class GameOverSubstate extends MusicBeatSubstate
 {
 	public var boyfriend:Boyfriend;

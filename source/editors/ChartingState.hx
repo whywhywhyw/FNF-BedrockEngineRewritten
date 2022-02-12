@@ -51,6 +51,8 @@ import sys.FileSystem;
 import flash.media.Sound;
 #end
 
+import meta.state.*;
+
 using StringTools;
 
 class ChartingState extends MusicBeatState
