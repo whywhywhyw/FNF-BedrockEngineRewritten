@@ -72,50 +72,6 @@ class JsonSettings
                 noteSkin = noteSkinTEMPLATE;
                 noteSplashSkin = noteSplashSkinTEMPLATE;
 
-                marvWindow = marv;
-                sickWindow = sick;
-                goodWindow = good;
-                badWindow = bad;
-
-
-                //if its not int, make it int
-                if (Std.is(marv, Float))
-                {
-                    Std.int(marv);
-                    marvWindow = marv;
-
-                    if (marv < 1 || marv > 45)
-                        marvWindow = 25;
-                }
-
-                if (Std.is(sick, Float))
-                {
-                    Std.int(sick);
-                    sickWindow = sick;
-
-                    if (sick < 5 || sick > 75)
-                        sickWindow = 45;
-                }
-
-                if (Std.is(good, Float))
-                {
-                    Std.int(good);
-                    goodWindow = sick;
-
-                    if (good < 10 || good > 135)
-                        goodWindow = 90;
-
-                }
-
-                if (Std.is(bad, Float))
-                {
-                    Std.int(bad);
-                    badWindow = bad;
-
-                    if (bad < 15 || bad > 180)
-                        badWindow = 135;
-                }
-
                 //prevent people to abuse it
                 if (marv < 1 || marv > 45)
                     marvWindow = 25;
@@ -126,10 +82,16 @@ class JsonSettings
                 if (bad < 15 || bad > 180)
                     badWindow = 135;
 
+                /*
+                need to properly remove offsets
+                because they are kinda buggy for now lol
+                - Gui iago
+                */
+
                 if (noteSkinTEMPLATE == null || noteSkinTEMPLATE.length < 0)
                     {
                     if (logs < 11)
-                     trace("invalid note skin, reverting back to the defaults.");
+                    trace("invalid note skin, reverting back to the defaults.");
                     noteSkin = 'NOTE_assets';
                     }
     

@@ -68,6 +68,10 @@ class JsonEditor extends MusicBeatState
       //this will be readme text
       public var readme:String = JsonSettings.read;
 
+      /*reminder to all devs: this state has broken boxes for the note section and
+		gameplay section, do not try to use it until it's completely fixed
+		- Gui iago*/
+
      override public function create()
       {
             var ctrltext:FlxText = new FlxText(0, 40, FlxG.width, "", 20);
@@ -78,6 +82,7 @@ class JsonEditor extends MusicBeatState
 
             var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.screenCenter();
+            bg.color = FlxColor.LIME;
 		add(bg);
 
             var tabs = [
@@ -303,7 +308,7 @@ class JsonEditor extends MusicBeatState
                   saventext =
                   '              
                   "noteSkin":"NOTE_assets",
-                  "noteSplashSkin":"notesplashes"
+                  "noteSplashSkin":"noteSplashes"
                   ';
                   File.saveContent(JsonSettings.offdir, saventext);
             }
