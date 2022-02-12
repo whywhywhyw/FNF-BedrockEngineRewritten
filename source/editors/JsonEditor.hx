@@ -84,7 +84,7 @@ class JsonEditor extends MusicBeatState
             FlxG.mouse.visible = true;
 
             var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-            bg.color = FlxColor.LIME;
+            bg.color = FlxColor.GRAY;
 		bg.screenCenter();
 		add(bg);
 

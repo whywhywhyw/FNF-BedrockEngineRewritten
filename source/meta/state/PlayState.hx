@@ -647,6 +647,12 @@ class PlayState extends MusicBeatState
 				add(bgSchool);
 				bgSchool.antialiasing = false;
 
+				var bgStreetlower:BGSprite = new BGSprite('weeb/weebStreet', repositionShit, 200, 0.95,
+					0.95); // Camera movement shows a null object so i will put this, remove when camera movement is fixed -Luis
+				bgStreetlower.scale.set(2, 2);
+				add(bgStreetlower);
+				bgStreetlower.antialiasing = false;
+
 				var bgStreet:BGSprite = new BGSprite('weeb/weebStreet', repositionShit, 0, 0.95, 0.95);
 				add(bgStreet);
 				bgStreet.antialiasing = false;
@@ -712,6 +718,12 @@ class PlayState extends MusicBeatState
 				var posY = 200;
 				if (!ClientPrefs.lowQuality)
 				{
+
+					var bglower:BGSprite = new BGSprite('weeb/animatedEvilSchool_low', posX, posY + 200, 0.8, 0.9);
+					bglower.scale.set(10, 10);
+					bglower.antialiasing = false;
+					add(bglower);
+					
 					var bg:BGSprite = new BGSprite('weeb/animatedEvilSchool', posX, posY, 0.8, 0.9, ['background 2'], true);
 					bg.scale.set(6, 6);
 					bg.antialiasing = false;

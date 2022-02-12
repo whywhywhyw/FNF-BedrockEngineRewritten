@@ -66,13 +66,16 @@ class MusicPlayerState extends MusicBeatState
 	var selector:FlxText;
 
 	// private static variables
-	private static var curSelected:Int = 0;
+	public static var curSelected:Int = 0;
 	private static var lastDifficultyName:String = '';
 	public static var curPlaying:Bool = false;
 
 	// private variables
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var iconArray:Array<HealthIcon> = [];
+
+	// boolean variables
+	public static var wasloadedonfreeplay:Bool = false;
 
 	override function create()
 	{
@@ -173,6 +176,12 @@ class MusicPlayerState extends MusicBeatState
 			add(icon);
 		}
 		WeekData.setDirectoryFromWeek();
+
+		if (wasloadedonfreeplay)
+		{
+			if (curSelected != FreeplayState.curSelected)
+				curSelected = FreeplayState.curSelected;
+		}
 
 		if (curSelected >= songs.length)
 			curSelected = 0;
@@ -336,7 +345,7 @@ class MusicPlayerState extends MusicBeatState
 					}
 					else
 					{
-						FlxG.switchState(new ExtraMenuState());
+						MusicBeatState.justswitchState(new ExtraMenuState());
 					}
 				}
 
