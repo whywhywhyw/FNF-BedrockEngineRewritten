@@ -1,6 +1,7 @@
 package meta.state.menus;
 
 // da imports
+import meta.state.*
 import openfl.display.Tile;
 #if desktop
 import Discord.DiscordClient;

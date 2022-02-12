@@ -246,6 +246,7 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var totalMisses:Int = 0;
 	public var scoreTxt:FlxText;
+	public var scoreBorder:FlxSprite;
 
 	var judgementCounter:FlxText;
 	var timeTxt:FlxText;
@@ -1189,6 +1190,13 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
+
+		scoreBorder.setPosition(scoreTxt.x - 10, scoreTxt.y - 10);
+		scoreBorder.setGraphicSize(Std.int(scoreTxt.width + 20), Std.int(scoreTxt.height + 25));
+		scoreBorder.screenCenter(Y);
+		scoreBorder.updateHitbox();
+		scoreBorder.visible = !ClientPrefs.hideHud;
+		add(scoreBorder);
 		
 		if(ClientPrefs.maniaMode) { //da big if
 			ClientPrefs.middleScroll = true;
