@@ -217,7 +217,7 @@ class JsonEditor extends MusicBeatState
             note_group.add(ney);
             note_group.add(text);
             note_group.add(texttwo);
-            UI_characterbox.addGroup.(note_group);
+            UI_characterbox.addGroup(note_group);
 
             super.create();
       }
