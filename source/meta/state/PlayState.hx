@@ -1189,13 +1189,7 @@ class PlayState extends MusicBeatState
 			remove(iconP2);
 		}
 		reloadHealthBarColors();
-
-		scoreBorder.setPosition(healthBarBG.y + 40);
-		scoreBorder.setGraphicSize(Std.int(healthBarBG.width + 20), Std.int(healthBarBG.height + 25));
-		scoreBorder.updateHitbox();
-		scoreBorder.visible = !ClientPrefs.hideHud;
-		add(scoreBorder);
-
+				
 		scoreTxt = new FlxText(0, healthBarBG.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
