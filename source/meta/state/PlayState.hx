@@ -3823,8 +3823,8 @@ class PlayState extends MusicBeatState
 			camFocus = 'bf';
 		
 			camFollow.set(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
-			camFollow.x -= boyfriend.cameraPosition[0];
-			camFollow.y += boyfriend.cameraPosition[1];
+			camFollow.x = bfPos[0];
+			camFollow.y = bfPos[1];
 
 			if (Paths.formatToSongPath(SONG.song) == 'tutorial' && cameraTwn == null && FlxG.camera.zoom != 1 && !ClientPrefs.maniaMode)
 			{
@@ -5703,17 +5703,17 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'limo':
-				bfPos[0] = boyfriend.getMidpoint().x - 100;
-				bfPos[1] = boyfriend.getMidpoint().y - 70;
+				bfPos[0] = boyfriend.getMidpoint().x - 110;
+				bfPos[1] = boyfriend.getMidpoint().y - 95;
 			case 'mall':
 				bfPos[0] = boyfriend.getMidpoint().x - 100;
-				bfPos[1] = boyfriend.getMidpoint().y - 70;
+				bfPos[1] = boyfriend.getMidpoint().y - 165;
 			case 'school' | 'schoolEvil':
-				bfPos[0] = boyfriend.getMidpoint().x - 350;
-				bfPos[1] = boyfriend.getMidpoint().y - 390;
+				bfPos[0] = boyfriend.getMidpoint().x - 290;
+				bfPos[1] = boyfriend.getMidpoint().y - 300;
 			default:
 				bfPos[0] = boyfriend.getMidpoint().x - 100 - boyfriend.cameraPosition[0];
-				bfPos[1] = boyfriend.getMidpoint().y - 100 + boyfriend.cameraPosition[1];	
+				bfPos[1] = boyfriend.getMidpoint().y - 100 + boyfriend.cameraPosition[1];
 		}
 	}
 }
