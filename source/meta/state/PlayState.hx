@@ -4596,11 +4596,16 @@ class PlayState extends MusicBeatState
 
 		/*misses and combo breaks are different things, for example you have 0 combo and you miss a note, technically you do not break your combo because you dont have one.*/
 		
+		#if sys
 		if (combo > 0)
 		{
 			songMisses++;
 			combo = 0;
 		}
+		#else 
+		songMisses++;
+		combo = 0;
+		#end
 
 		totalMisses++;
 
