@@ -1259,9 +1259,9 @@ class PlayState extends MusicBeatState
 
 		// Just in case.
 		if (ClientPrefs.marvelouses)
-			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nMisses: ${totalMisses}';
+			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nCombo Breaks: ${songMisses}';
 		else
-			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}${songMisses}\nMisses: ${totalMisses}';
+			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}${songMisses}\nCombo Breaks: ${songMisses}';
 
 		// then we add them
 		add(judgementCounter);
@@ -2832,7 +2832,7 @@ class PlayState extends MusicBeatState
 		var ratingDivider:String = " | ";
 
 		scoreTxt.text = 'Score: ' + songScore;
-		scoreTxt.text += divider + 'Combo Breaks:' + songMisses;
+		scoreTxt.text += divider + 'Misses:' + totalMisses;
 		scoreTxt.text += divider + 'Accuracy:' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%';
 
 		scoreTxt.text += divider + '[' + ratingName + ratingDivider + ratingFC + ']';
@@ -5379,7 +5379,8 @@ class PlayState extends MusicBeatState
 	public function RecalculateRating()
 	{
 		setOnLuas('score', songScore);
-		setOnLuas('misses', songMisses);
+		setOnLuas('misses', totalMisses);
+		setOnLuas('cbreaks', songMisses);
 		setOnLuas('hits', songHits);
 
 		#if sys
@@ -5466,9 +5467,9 @@ class PlayState extends MusicBeatState
 		setOnLuas('ratingName', ratingName);
 		setOnLuas('ratingFC', ratingFC);
 		if (ClientPrefs.marvelouses)
-			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nMisses: ${totalMisses}\n';
+			judgementCounter.text = 'Marvs: ${marvelouses}\nSicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nCombo Breaks: ${songMisses}\n';
 		else
-			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nMisses: ${totalMisses}\n';
+			judgementCounter.text = 'Sicks: ${sicks}\nGoods: ${goods}\nBads: ${bads}\nShits: ${shits}\nCombo Breaks: ${songMisses}\n';
 	}
 
 	public static var othersCodeName:String = 'otherAchievements';
