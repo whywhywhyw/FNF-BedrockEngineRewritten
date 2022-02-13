@@ -4134,11 +4134,6 @@ class PlayState extends MusicBeatState
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
 
-		/*if (ClientPrefs.keAccuracy)
-		totalNotesHit += Etterna.wife3(-noteDiff, Conductor.timeScale); */
-
-		// trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
-
 		if (ClientPrefs.playHitSounds)
 			FlxG.sound.play(Paths.sound('Tick'));
 
@@ -4161,28 +4156,14 @@ class PlayState extends MusicBeatState
 		switch (daRating)
 		{
 			case "shit": // shit
-				if (ClientPrefs.keAccuracy)
-				{
-					totalMisses++;
-					songMisses++;
-					combo = 0;
-				}
 				totalNotesHit += 0;
 				score = 50;
 				shits++;
 			case "bad": // bad
-				if (ClientPrefs.keAccuracy)
-				{
-					health -= 0.03 * healthLoss;
-				}
 				totalNotesHit += 0.5;
 				score = 100;
 				bads++;
 			case "good": // good
-				if (ClientPrefs.keAccuracy)
-				{
-					health = note.hitHealth * healthGain;
-				}
 				totalNotesHit += 0.75;
 				score = 200;
 				goods++;
@@ -4206,10 +4187,7 @@ class PlayState extends MusicBeatState
 
 		if (!practiceMode && !cpuControlled)
 		{
-			if (ClientPrefs.keAccuracy)
-				songScore += Math.round(score);
-			else
-				songScore += score;
+			songScore += score;
 			songHits++;
 			totalPlayed++;
 			RecalculateRating();
