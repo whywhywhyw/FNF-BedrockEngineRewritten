@@ -2,6 +2,8 @@ package editors;
 
 import meta.state.*;
 import meta.state.menus.*;
+import meta.data.Song;
+import gameObjects.Character;
 #if desktop
 import Discord.DiscordClient;
 #end

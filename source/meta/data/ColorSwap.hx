@@ -1,4 +1,4 @@
-package;
+package meta.data;
 
 import flixel.FlxG;
 import flixel.system.FlxAssets.FlxShader;

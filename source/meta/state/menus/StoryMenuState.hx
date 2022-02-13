@@ -1,6 +1,10 @@
 package meta.state.menus;
 
 import meta.state.*;
+import meta.subState.GameplayChangersSubstate;
+import meta.subState.ResetScoreSubState;
+import meta.data.Highscore;
+import meta.data.Song;
 #if desktop
 import Discord.DiscordClient;
 #end

@@ -1,7 +1,9 @@
-package;
+package meta.subState;
 
 import meta.Controls;
-import Conductor.BPMChangeEvent;
+import meta.data.ColorSwap;
+import meta.data.Conductor;
+import meta.data.PlayerSettings;
 import flixel.FlxG;
 import flixel.FlxSubState;
 import flixel.FlxBasic;

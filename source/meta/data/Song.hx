@@ -1,6 +1,7 @@
-package;
+package meta.data;
 
-import Section.SwagSection;
+import meta.data.Section.SwagSection;
+import gameObjects.StageData;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;

@@ -36,6 +36,7 @@ class JsonEditor extends MusicBeatState
       public var ney:FlxUIInputText;
       public var neya:FlxUIInputText;
       public var coolInput:FlxUIInputText;
+      public var coolInput2:FlxUIInputText;
 
       //ui shit
       public var nae:FlxUIInputText;
@@ -48,6 +49,7 @@ class JsonEditor extends MusicBeatState
       //grabbing shit from JsonSettings.hx (gameplay)
       public var letterG:Bool;
       public var divide:String;
+      public var ratingDivider:String;
       public var mash:Bool;
 
       //grabbing shit from JsonSettings.hx (ui)
@@ -129,6 +131,7 @@ class JsonEditor extends MusicBeatState
 
             letterG = JsonSettings.letterGrader;
             divide = JsonSettings.divider;
+            ratingDivider = JsonSettings.ratingDivider;
             mash = JsonSettings.antiMash;
 
             icon = JsonSettings.iconSupport;
@@ -179,9 +182,12 @@ class JsonEditor extends MusicBeatState
             var coolText = new FlxText(20, 40);
             coolText.text = "Score divider:";
 
-            var text = new FlxText(20, 80);
+            var coolText2 = new FlxText(20, 80);
+            coolText2.text = "Rating divider:";
+
+            var text = new FlxText(20, 120);
             text.text = "Note Skin:";
-            var texttwo = new FlxText(20, 100);
+            var texttwo = new FlxText(20, 160);
             texttwo.text = "Splash Skin:";
 
 
@@ -196,6 +202,7 @@ class JsonEditor extends MusicBeatState
             neya = new FlxUIInputText(100, 120, 90, judgement, 8);
 
             coolInput = new FlxUIInputText(100, 40, 90, divide, 8);
+            coolInput2 = new FlxUIInputText(100, 40, 90, ratingDivider, 8);
 
 		tab_group.add(text);
             tab_group.add(texttwo);
@@ -207,8 +214,10 @@ class JsonEditor extends MusicBeatState
             UI_characterbox.addGroup(tab_group);
 
             group_two.add(coolText);
+            group_two.add(coolText2);
             group_two.add(coolButton);
             group_two.add(coolInput);
+            group_two.add(coolInput2);
             group_two.add(oof);
             group_two.add(anti);
             UI_characterbox.addGroup(group_two);
@@ -281,6 +290,7 @@ class JsonEditor extends MusicBeatState
                   "letterGrader":'+letterG+',
                   "antiMash":'+mash+',
                   "divider": "'+coolInput.text+'"
+                  "ratingDivider": "'+coolInput2.text+'"
             }
             ';
             File.saveContent(JsonSettings.dirtwo, savegtext);

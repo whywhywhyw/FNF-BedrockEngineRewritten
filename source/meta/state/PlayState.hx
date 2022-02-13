@@ -1,14 +1,17 @@
 package meta.state;
 
+//yeah, I'm lazy, what about it?
 import meta.*;
 import meta.state.menus.*;
 import meta.state.*;
+import meta.subState.*;
+import meta.data.*;
 import flixel.graphics.FlxGraphic;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Section.SwagSection;
-import Song.SwagSong;
+import meta.data.Section.SwagSection;
+import meta.data.Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
@@ -58,8 +61,10 @@ import flixel.input.keyboard.FlxKey;
 import Note.EventNote;
 import openfl.events.KeyboardEvent;
 import flixel.input.gamepad.FlxGamepad;
-import Achievements;
-import StageData;
+import meta.data.Achievements;
+import gameObjects.StageData;
+import gameObjects.Boyfriend;
+import gameObjects.Character;
 import FunkinLua;
 import DialogueBoxPsych;
 import Shaders;
@@ -1185,18 +1190,17 @@ class PlayState extends MusicBeatState
 		}
 		reloadHealthBarColors();
 
+		scoreBorder.setPosition(healthBarBG.y + 40);
+		scoreBorder.setGraphicSize(Std.int(healthBarBG.width + 20), Std.int(healthBarBG.height + 25));
+		scoreBorder.updateHitbox();
+		scoreBorder.visible = !ClientPrefs.hideHud;
+		add(scoreBorder);
+
 		scoreTxt = new FlxText(0, healthBarBG.y + 40, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
-
-		scoreBorder.setPosition(scoreTxt.x - 10, scoreTxt.y - 10);
-		scoreBorder.setGraphicSize(Std.int(scoreTxt.width + 20), Std.int(scoreTxt.height + 25));
-		scoreBorder.screenCenter(Y);
-		scoreBorder.updateHitbox();
-		scoreBorder.visible = !ClientPrefs.hideHud;
-		add(scoreBorder);
 		
 		if(ClientPrefs.maniaMode) { //da big if
 			ClientPrefs.middleScroll = true;
@@ -1297,6 +1301,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		scoreBorder.cameras = [camHUD];
 		judgementCounter.cameras = [camHUD];
 		beWatermark.cameras = [camHUD];
 		peWatermark.cameras = [camHUD];
@@ -2826,24 +2831,23 @@ class PlayState extends MusicBeatState
 		var ratingNameTwo:String = ratingName;
 		#if sys
 		var divider:String = ' '+JsonSettings.divider+' ';
+		//var ratingDivider:String = ' '+JsonSettings.ratingDivider+' ';
 		#else
 		var divider:String = "-";
 		#end
+		var ratingDivider:String = " | ";
 
 		scoreTxt.text = 'Score: ' + songScore;
+		scoreTxt.text += divider + 'Combo Breaks:' + songMisses;
 		scoreTxt.text += divider + 'Accuracy:' + Highscore.floorDecimal(ratingPercent * 100, 2) + '%';
 
-		if (ratingFC == "" || totalMisses > 0)
-		scoreTxt.text += '';
-	else
-		scoreTxt.text += ' [' + ratingFC + ']';
+		scoreTxt.text += divider + '[' + ratingName + ratingDivider + ratingFC + ']';
 
-		scoreTxt.text += divider + 'Combo Breaks:' + songMisses;
+	if (ratingFC == "")
+		scoreTxt.text += divider + '[? | ?]';
 
-		if (ratingFC == "")
-		scoreTxt.text += divider + 'Rank: ?';
-	else
-		scoreTxt.text += divider + 'Rank: ' + ratingName;
+	if (ratingFC == "" && totalMisses > 0)
+			scoreTxt.text += divider + '[' + ratingName + ']'; 
 
 		if (botplayTxt.visible)
 		{

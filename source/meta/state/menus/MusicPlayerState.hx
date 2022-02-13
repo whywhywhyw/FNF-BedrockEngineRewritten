@@ -2,6 +2,9 @@ package meta.state.menus;
 
 // da imports
 import meta.state.*;
+import meta.data.Highscore;
+import meta.data.Conductor;
+import meta.data.Song;
 import openfl.display.Tile;
 #if desktop
 import Discord.DiscordClient;

@@ -1,7 +1,8 @@
 package meta.state;
 
 import flixel.FlxSubState;
-import Conductor.BPMChangeEvent;
+import meta.data.Conductor;
+import meta.data.PlayerSettings;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;

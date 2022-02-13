@@ -36,6 +36,7 @@ class JsonSettings
 
     //gameplay settings 
     public static var divider:String;
+    public static var ratingDivider:String;
     public static var letterGrader:Bool;
 	public static var antiMash:Bool;
 
@@ -106,22 +107,26 @@ class JsonSettings
                 var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
 				var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
 				var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
+                var ratingDividerTEMPLATE:String = Reflect.getProperty(poop, "ratingDivider");
 
                 letterGrader = letterGraderTEMPLATE;
                 antiMash = antiMashTEMPLATE;
                 divider = dividerTEMPLATE;
+                ratingDivider = ratingDividerTEMPLATE;
 
-                if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6)
+                if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6 || ratingDividerTEMPLATE != null && ratingDividerTEMPLATE.length > 6)
                 {
                     if  (logs <= 15)
                      trace("did you really think you could abuse dividers LMAO");
                     divider = '-';
+                    ratingDivider = '|';
                 }
                 
-                if (dividerTEMPLATE==null)
+                if (dividerTEMPLATE==null && ratingDividerTEMPLATE==null)
                 {
                     divider = "-";
-                    if (FlxG.random.bool(10)) //this has %10 percent chance to happen
+                    ratingDivider = '|';
+                    if (FlxG.random.bool(10)) //this has a 10% chance of happening
                     {
                         if (FileSystem.exists("settings/lmao.log"))
                         {

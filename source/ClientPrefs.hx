@@ -2,6 +2,8 @@ package;
 
 import meta.Controls;
 import meta.state.*;
+import meta.data.Achievements;
+import meta.data.PlayerSettings;
 import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;

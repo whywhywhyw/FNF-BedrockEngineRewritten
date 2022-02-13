@@ -1,6 +1,8 @@
 package options;
 
 import meta.state.*;
+import gameObjects.Character;
+import meta.data.Conductor;
 import flixel.util.FlxStringUtil;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;

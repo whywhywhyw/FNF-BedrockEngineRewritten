@@ -1,4 +1,4 @@
-package;
+package gameObjects;
 
 import meta.state.PlayState;
 import animateatlas.AtlasFrameMaker;
@@ -9,7 +9,8 @@ import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxSort;
-import Section.SwagSection;
+import meta.data.Section.SwagSection;
+import meta.data.Conductor;
 #if MODS_ALLOWED
 import sys.io.File;
 import sys.FileSystem;

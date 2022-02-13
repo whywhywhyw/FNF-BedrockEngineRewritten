@@ -1,4 +1,4 @@
-package;
+package meta.data;
 
 import meta.CoolUtil;
 import flixel.FlxG;

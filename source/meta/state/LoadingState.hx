@@ -1,5 +1,9 @@
 package meta.state;
 
+/*should StageData even be on gameObjects? wouldn't it make more sense to
+	let it be on meta.data? idk*/
+
+import gameObjects.StageData;
 import lime.app.Promise;
 import lime.app.Future;
 import flixel.FlxG;

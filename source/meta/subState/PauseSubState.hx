@@ -1,10 +1,12 @@
-package;
+package meta.subState;
 
 import meta.Controls.Control;
 import meta.CoolUtil;
 import meta.state.PlayState;
 import meta.state.MusicBeatState;
 import meta.state.menus.*;
+import meta.data.Highscore;
+import meta.data.Song;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;

@@ -5,9 +5,11 @@ import meta.CoolUtil;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Conductor.BPMChangeEvent;
-import Section.SwagSection;
-import Song.SwagSong;
+import meta.data.Conductor;
+import meta.data.Section.SwagSection;
+import meta.data.Song;
+import gameObjects.Character;
+import gameObjects.StageData;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxObject;
@@ -2295,7 +2297,7 @@ class ChartingState extends MusicBeatState
 		var rawJson = OpenFlAssets.getText(path);
 		#end
 
-		var json:Character.CharacterFile = cast Json.parse(rawJson);
+		var json:gameObjects.Character.CharacterFile = cast Json.parse(rawJson);
 		return json.healthicon;
 	}
 

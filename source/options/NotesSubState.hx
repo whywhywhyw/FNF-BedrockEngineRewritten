@@ -1,6 +1,8 @@
 package options;
 
 import meta.Controls;
+import meta.subState.MusicBeatSubstate;
+import meta.data.ColorSwap;
 #if desktop
 import Discord.DiscordClient;
 #end

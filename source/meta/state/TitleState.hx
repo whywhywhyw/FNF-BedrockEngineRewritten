@@ -1,5 +1,9 @@
 package meta.state;
 
+import meta.data.ColorSwap;
+import meta.data.Conductor;
+import meta.data.Highscore;
+import meta.data.PlayerSettings;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;

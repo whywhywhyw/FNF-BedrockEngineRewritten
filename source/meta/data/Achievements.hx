@@ -1,3 +1,5 @@
+package meta.data;
+
 import meta.state.*;
 import meta.CoolUtil;
 import flixel.graphics.FlxGraphic;

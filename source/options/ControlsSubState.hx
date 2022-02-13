@@ -1,6 +1,7 @@
 package options;
 
 import meta.Controls;
+import meta.subState.MusicBeatSubstate;
 #if desktop
 import Discord.DiscordClient;
 #end

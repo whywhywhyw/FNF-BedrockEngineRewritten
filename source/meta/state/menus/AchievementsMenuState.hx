@@ -14,7 +14,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 import flixel.FlxSubState;
-import Achievements;
+import meta.data.Achievements;
 
 using StringTools;
 

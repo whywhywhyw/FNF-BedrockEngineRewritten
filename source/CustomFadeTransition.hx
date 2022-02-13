@@ -1,7 +1,8 @@
 package;
 
 import meta.CoolUtil;
-import Conductor.BPMChangeEvent;
+import meta.subState.MusicBeatSubstate;
+import meta.data.Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;

@@ -1,6 +1,7 @@
 package editors;
 
 import meta.state.PlayState;
+import meta.data.Conductor;
 import meta.Controls;
 #if LUA_ALLOWED
 import llua.Lua;

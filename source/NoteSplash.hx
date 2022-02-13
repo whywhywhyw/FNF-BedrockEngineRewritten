@@ -1,6 +1,7 @@
 package;
 
 import meta.*;
+import meta.data.ColorSwap;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;

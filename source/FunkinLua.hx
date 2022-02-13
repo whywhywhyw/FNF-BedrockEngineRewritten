@@ -3,6 +3,9 @@ import meta.state.PlayState;
 import meta.state.menus.MainMenuState;
 import meta.state.menus.StoryMenuState;
 import meta.state.menus.FreeplayState;
+import meta.subState.GameOverSubstate;
+import meta.subState.PauseSubState;
+import meta.data.Conductor;
 import meta.CoolUtil;
 #if LUA_ALLOWED
 import llua.Lua;
