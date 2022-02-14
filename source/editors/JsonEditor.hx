@@ -319,7 +319,7 @@ class JsonEditor extends MusicBeatState
             }
             ';
             File.saveContent(JsonSettings.offdir, saventext);
-            if (note == null || note.length < 64)
+            if (note == null || note.length < 16)
             {
                   saventext =
                   '              
