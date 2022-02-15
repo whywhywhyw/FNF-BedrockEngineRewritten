@@ -251,7 +251,6 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var totalMisses:Int = 0;
 	public var scoreTxt:FlxText;
-	public var scoreBorder:FlxSprite;
 
 	var judgementCounter:FlxText;
 	var timeTxt:FlxText;
@@ -1295,7 +1294,6 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		scoreBorder.cameras = [camHUD];
 		judgementCounter.cameras = [camHUD];
 		beWatermark.cameras = [camHUD];
 		peWatermark.cameras = [camHUD];
