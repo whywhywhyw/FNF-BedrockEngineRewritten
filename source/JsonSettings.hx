@@ -92,12 +92,17 @@ class JsonSettings
 <<<<<<< HEAD
                 else if (setting == "uiSettings")
                 {
+<<<<<<< HEAD
                     var iconSupportTEMPLATE:Bool = Reflect.getProperty(shut, "iconSupport");
                     var judgementSkinTEMPLATE:String = Reflect.getProperty(shut, "judgementSkin");
 =======
                 var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
 				var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
 >>>>>>> parent of e4b706a (rewritten json settings system (isnt tested))
+=======
+                    var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
+                    var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
+>>>>>>> parent of a7e1b4e (fixed my fucking mess)
 
                 judgementSkin = judgementSkinTEMPLATE;
                 iconSupport = iconSupportTEMPLATE;
@@ -114,6 +119,7 @@ class JsonSettings
 <<<<<<< HEAD
                 else if (setting == "gameplaySetting")
                 {
+<<<<<<< HEAD
                     var letterGraderTEMPLATE:Bool = Reflect.getProperty(shut, "letterGrader");
                     var antiMashTEMPLATE:Bool = Reflect.getProperty(shut, "antiMash");
                     var dividerTEMPLATE:String = Reflect.getProperty(shut, "divider");
@@ -143,6 +149,27 @@ class JsonSettings
                     divider = "-";
                     ratingDivider = '|';
                     if (FlxG.random.bool(10)) //this has a 10% chance of happening
+=======
+                    var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
+                    var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
+                    var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
+                    var ratingDividerTEMPLATE:String = Reflect.getProperty(poop, "ratingDivider");
+
+                    letterGrader = letterGraderTEMPLATE;
+                    antiMash = antiMashTEMPLATE;
+                    divider = dividerTEMPLATE;
+                    ratingDivider = ratingDividerTEMPLATE;
+
+                    if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6 || ratingDividerTEMPLATE != null && ratingDividerTEMPLATE.length > 6)
+                    {
+                        if  (logs <= 15)
+                        trace("did you really think you could abuse dividers LMAO");
+                        divider = '-';
+                        ratingDivider = '|';
+                    }
+                    
+                    if (dividerTEMPLATE==null && ratingDividerTEMPLATE==null)
+>>>>>>> parent of a7e1b4e (fixed my fucking mess)
                     {
                         if (FileSystem.exists("settings/lmao.log"))
                         {
