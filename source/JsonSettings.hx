@@ -27,7 +27,7 @@ class JsonSettings
     public static var offset:String = null;
 
     //ui settings 
-    public static var iconSupport:Bool;
+    public static var iconSupport:Null<Bool>;
     public static var judgementSkin:String;
 
     //note settings
@@ -37,8 +37,8 @@ class JsonSettings
     //gameplay settings 
     public static var divider:String;
     public static var ratingDivider:String;
-    public static var letterGrader:Bool;
-	public static var antiMash:Bool;
+    public static var letterGrader:Null<Bool>;
+    public static var antiMash:Null<Bool>;
 
     //json directories
     public static var dirtwo:String = "settings/gameplaySettings.json";
