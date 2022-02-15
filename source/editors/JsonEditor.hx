@@ -75,7 +75,7 @@ class JsonEditor extends MusicBeatState
 		gameplay section, do not try to use it until it's completely fixed
 		- Gui iago*/
       #if sys
-     override public function create()
+      override public function create()
       {
             var ctrltext:FlxText = new FlxText(0, 40, FlxG.width, "", 20);
             ctrltext.text = "";
@@ -101,17 +101,19 @@ class JsonEditor extends MusicBeatState
 		UI_characterbox.scrollFactor.set();
 		add(UI_characterbox);
 
-            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-            appearance = File.getContent(JsonSettings.dir);
-            gameplay = File.getContent(JsonSettings.dirtwo);
-            note = File.getContent(JsonSettings.offdir);
+            JsonSettings.setJson('note');
+            JsonSettings.setJson('gameplaySettings');
+            JsonSettings.setJson('uiSettings');
+            appearance = File.getContent(Paths.returnJson('uiSettings'));
+            gameplay = File.getContent(Paths.returnJson('gameplaySettings'));
+            note = File.getContent(Paths.returnJson('note'));
            
             
-      if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir))
-      {
-            backup = appearance;
-            gbackup = gameplay;
-      }
+            if (FileSystem.exists(savedir) && FileSystem.exists(gsavedir))
+            {
+                  backup = appearance;
+                  gbackup = gameplay;
+            }
             
             /* if (FileSystem.exists("backup/") && !FileSystem.exists("backup/uiBackup.txt") && !FileSystem.exists("backup/gameplayBackup.txt"))
                   ididyourmom = true;
@@ -233,7 +235,9 @@ class JsonEditor extends MusicBeatState
 
       override public function update(elapsed:Float)
       {
-            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+            JsonSettings.setJson('note');
+            JsonSettings.setJson('gameplaySettings');
+            JsonSettings.setJson('uiSettings');
 
             if (FlxG.keys.justPressed.ESCAPE) {
                   MusicBeatState.switchState(new ExtraMenuState());
@@ -244,7 +248,9 @@ class JsonEditor extends MusicBeatState
             DiscordClient.changePresence("Editing JSON Preferences", null);
             #end
 
-            JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+            JsonSettings.setJson('note');
+            JsonSettings.setJson('gameplaySettings');
+            JsonSettings.setJson('uiSettings');
            
             if (appearance == null || gameplay == null)
             {
@@ -267,7 +273,7 @@ class JsonEditor extends MusicBeatState
 	            "judgementSkin": "'+neya.text+'" 
             }
             ';
-            File.saveContent(JsonSettings.dir, savetext);
+            File.saveContent(Paths.returnJson('uiSettings'), savetext);
             if (appearance == null)
             {
                   if (FileSystem.exists(backup) && backup.contains("iconSupport") && backup.contains("judgementSkin"))
@@ -293,7 +299,7 @@ class JsonEditor extends MusicBeatState
                   "ratingDivider": "'+coolInput2.text+'"
             }
             ';
-            File.saveContent(JsonSettings.dirtwo, savegtext);
+            File.saveContent(Paths.returnJson('gameplaySettings'), savegtext);
             if (gameplay == null)
             {
                   if (FileSystem.exists(gbackup) && gbackup.contains("letterGrader") && gbackup.contains("antiMash") && gbackup.contains("divider"))
@@ -318,7 +324,7 @@ class JsonEditor extends MusicBeatState
                   "noteSplashSkin":"'+ney.text+'"
             }
             ';
-            File.saveContent(JsonSettings.offdir, saventext);
+            File.saveContent(Paths.returnJson('note'), saventext);
             if (note == null || note.length < 16)
             {
                   saventext =
@@ -326,7 +332,7 @@ class JsonEditor extends MusicBeatState
                   "noteSkin":"NOTE_assets",
                   "noteSplashSkin":"noteSplashes"
                   ';
-                  File.saveContent(JsonSettings.offdir, saventext);
+                  File.saveContent(Paths.returnJson('note'), saventext);
             }
       }
       #end

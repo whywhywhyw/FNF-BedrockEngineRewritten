@@ -81,8 +81,8 @@ class JsonSettings
 
                 else if (setting == "uiSettings")
                 {
-                    var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
-                    var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
+                    var iconSupportTEMPLATE:Bool = Reflect.getProperty(shut, "iconSupport");
+                    var judgementSkinTEMPLATE:String = Reflect.getProperty(shut, "judgementSkin");
 
                     judgementSkin = judgementSkinTEMPLATE;
                     iconSupport = iconSupportTEMPLATE;
@@ -99,10 +99,10 @@ class JsonSettings
 
                 else if (setting == "gameplaySetting")
                 {
-                    var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
-                    var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
-                    var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
-                    var ratingDividerTEMPLATE:String = Reflect.getProperty(poop, "ratingDivider");
+                    var letterGraderTEMPLATE:Bool = Reflect.getProperty(shut, "letterGrader");
+                    var antiMashTEMPLATE:Bool = Reflect.getProperty(shut, "antiMash");
+                    var dividerTEMPLATE:String = Reflect.getProperty(shut, "divider");
+                    var ratingDividerTEMPLATE:String = Reflect.getProperty(shut, "ratingDivider");
 
                     letterGrader = letterGraderTEMPLATE;
                     antiMash = antiMashTEMPLATE;
