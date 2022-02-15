@@ -12,12 +12,11 @@ import meta.*;
 class JsonSettings
 {
 
-    /* use this to call the function: JsonSettings.setJson(*SETTING FILE NAME*);
-    FOR MODS USE JsonSettings.modsJson(*SETTING FILE NAME*);
-    NOTE TO SELF YOU DO NOT NEED TO IMPORT THIS YOU DUMBASS */
+    //use this to call the function: JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+    //NOTE TO SELF YOU DO NOT NEED TO IMPORT THIS YOU DUMBASS
 
     //this is used for log counts
-    public static var logs:Null<Int>; 
+    public static var logs:Int = 0; 
 
     //readme stuff
     public static var read:String = "settings/do-READ-me.txt";
@@ -41,120 +40,140 @@ class JsonSettings
     public static var letterGrader:Null<Bool>;
     public static var antiMash:Null<Bool>;
 
-    #if sys
-    public static function setJson(setting:String)
+    //json directories
+    public static var dirtwo:String = "settings/gameplaySettings.json";
+    public static var dir:String = "settings/uiSettings.json";
+    public static var offdir:String = "settings/note.json";
+
+    #if MODS_ALLOWED
+    public static var dirmod:String = "mods/settings/settings.json";
+    #end
+
+    public static function setJson(offdir:String, dir:String, dirtwo:String)
     {
-        if (FileSystem.exists(Paths.returnJson(setting)))
+        #if sys
+        if (FileSystem.exists(offdir) && FileSystem.exists(dir) && FileSystem.exists(dirtwo))
         {
-            var tempSetting:String = File.getContent(Paths.returnJson(setting));
-            if (tempSetting != null && tempSetting.length >= 3)
+            offset = File.getContent(offdir);
+            customJson = File.getContent(dirtwo);
+            customGame = File.getContent(dir);
+
+            if (customJson != null && customJson.length > 4 && customGame != null && customGame.length > 4 && offset != null && offset.length > 4)
             {
                 logs++;
 
-                var shut:Dynamic = Json.parse(Paths.returnJson(setting));
+                var piss:Dynamic = Json.parse(offset);
+                var shit:Dynamic = Json.parse(customGame);
+                var poop:Dynamic = Json.parse(customJson);
 
                 //////////////////////////NOTE//////////////////////////////////
-                if (setting == "note")
+                var noteSplashSkinTEMPLATE:String = Reflect.getProperty(piss, "noteSplashSkin");
+                var noteSkinTEMPLATE:String = Reflect.getProperty(piss, "noteSkin");
+
+                noteSkin = noteSkinTEMPLATE;
+                noteSplashSkin = noteSplashSkinTEMPLATE;
+
+                if (noteSkinTEMPLATE == null || noteSkinTEMPLATE.length < 0)
                 {
-                    var noteSplashSkinTEMPLATE:String = Reflect.getProperty(shut, "noteSplashSkin");
-                    var noteSkinTEMPLATE:String = Reflect.getProperty(shut, "noteSkin");
-
-                    noteSkin = noteSkinTEMPLATE;
-                    noteSplashSkin = noteSplashSkinTEMPLATE;
-
-                    if (noteSkinTEMPLATE == null || noteSkinTEMPLATE.length < 0)
-                    {
-                        if (logs <= 10)
-                            trace("invalid note skin, reverting back to the defaults.");
-                        noteSkin = 'NOTE_assets';
-                    }
-        
-                    if (noteSplashSkinTEMPLATE == null || noteSplashSkinTEMPLATE.length < 0)
-                    {
-                        if (logs <= 10)
-                            trace("invalid note splash, reverting back to the defaults.");
-                        noteSplashSkin = 'noteSplashes';
-                    }
+                    if (logs <= 10)
+                        trace("invalid note skin, reverting back to the defaults.");
+                    noteSkin = 'NOTE_assets';
+                }
+    
+                if (noteSplashSkinTEMPLATE == null || noteSplashSkinTEMPLATE.length < 0)
+                {
+                    if (logs <= 10)
+                        trace("invalid note splash, reverting back to the defaults.");
+                    noteSplashSkin = 'noteSplashes';
                 }
 
                 ///////////////////////////////UI///////////////////////////////////////
 
+<<<<<<< HEAD
                 else if (setting == "uiSettings")
                 {
                     var iconSupportTEMPLATE:Bool = Reflect.getProperty(shut, "iconSupport");
                     var judgementSkinTEMPLATE:String = Reflect.getProperty(shut, "judgementSkin");
+=======
+                var iconSupportTEMPLATE:Bool = Reflect.getProperty(shit, "iconSupport");
+				var judgementSkinTEMPLATE:String = Reflect.getProperty(shit, "judgementSkin");
+>>>>>>> parent of e4b706a (rewritten json settings system (isnt tested))
 
-                    judgementSkin = judgementSkinTEMPLATE;
-                    iconSupport = iconSupportTEMPLATE;
+                judgementSkin = judgementSkinTEMPLATE;
+                iconSupport = iconSupportTEMPLATE;
 
-                    if (judgementSkinTEMPLATE == null || judgementSkinTEMPLATE.length < 0)
-                    {
-                    if (logs <= 10) 
-                        trace("invalid judgement skin, reverting back to the defaults.");
-                    judgementSkin = 'bedrock';
-                    }
+                if (judgementSkinTEMPLATE == null || judgementSkinTEMPLATE.length < 0)
+                {
+                   if (logs <= 10) 
+                    trace("invalid judgement skin, reverting back to the defaults.");
+                   judgementSkin = 'bedrock';
                 }
 
                 ///////////////////////////////GAMEPLAY//////////////////////////////////////
 
+<<<<<<< HEAD
                 else if (setting == "gameplaySetting")
                 {
                     var letterGraderTEMPLATE:Bool = Reflect.getProperty(shut, "letterGrader");
                     var antiMashTEMPLATE:Bool = Reflect.getProperty(shut, "antiMash");
                     var dividerTEMPLATE:String = Reflect.getProperty(shut, "divider");
                     var ratingDividerTEMPLATE:String = Reflect.getProperty(shut, "ratingDivider");
+=======
+                var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
+				var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
+				var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
+                var ratingDividerTEMPLATE:String = Reflect.getProperty(poop, "ratingDivider");
+>>>>>>> parent of e4b706a (rewritten json settings system (isnt tested))
 
-                    letterGrader = letterGraderTEMPLATE;
-                    antiMash = antiMashTEMPLATE;
-                    divider = dividerTEMPLATE;
-                    ratingDivider = ratingDividerTEMPLATE;
+                letterGrader = letterGraderTEMPLATE;
+                antiMash = antiMashTEMPLATE;
+                divider = dividerTEMPLATE;
+                ratingDivider = ratingDividerTEMPLATE;
 
-                    if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6 || ratingDividerTEMPLATE != null && ratingDividerTEMPLATE.length > 6)
+                if (dividerTEMPLATE != null && dividerTEMPLATE.length > 6 || ratingDividerTEMPLATE != null && ratingDividerTEMPLATE.length > 6)
+                {
+                    if  (logs <= 15)
+                     trace("did you really think you could abuse dividers LMAO");
+                    divider = '-';
+                    ratingDivider = '|';
+                }
+                
+                if (dividerTEMPLATE==null && ratingDividerTEMPLATE==null)
+                {
+                    divider = "-";
+                    ratingDivider = '|';
+                    if (FlxG.random.bool(10)) //this has a 10% chance of happening
                     {
-                        if  (logs <= 15)
-                        trace("did you really think you could abuse dividers LMAO");
-                        divider = '-';
-                        ratingDivider = '|';
-                    }
-                    
-                    if (dividerTEMPLATE==null && ratingDividerTEMPLATE==null)
-                    {
-                        divider = "-";
-                        ratingDivider = '|';
-                        if (FlxG.random.bool(10)) //this has a 10% chance of happening
+                        if (FileSystem.exists("settings/lmao.log"))
                         {
-                            if (FileSystem.exists("settings/lmao.log"))
-                            {
-                                if (logs <= 30)
-                                    trace("you already got this one lmao");
-                            }
-                            else
-                                File.saveContent("settings/lmao.log", "did you really think you could make noteskins null? LMFAO someone thought about this already dumbass");
-                            divider = "permission-denied";
+                            if (logs <= 30)
+                                trace("you already got this one lmao");
                         }
+                        else
+                            File.saveContent("settings/lmao.log", "did you really think you could make noteskins null? LMFAO someone thought about this already dumbass");
+                        divider = "permission-denied";
                     }
                 }
             }
         }
+        #end
     }
-    #end
+   
 
     //use this on your mods and add your options 
     #if MODS_ALLOWED
-    #if sys
-    public static function modsJson(modSetting:String)
+    public static function devmod(dirmod:String)
     {
-        if (FileSystem.exists(Paths.modsSettings(modSetting)))
+        if (FileSystem.exists(dir))
         {
-            var customMod:String = File.getContent(Paths.modsSettings(modSetting));
-            if (customMod != null && customMod.length >= 2)
+            var customMod:String = File.getContent(dirmod);
+            if (customMod != null)
             {
                 logs++;
 
-                trace("wow no options installed");
+                trace("wow no mod options installed");
             }
         }
     }
-    #end
     #end
 }

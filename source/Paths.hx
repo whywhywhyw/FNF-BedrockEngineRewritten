@@ -44,8 +44,7 @@ class Paths
 		'weeks',
 		'fonts',
 		'scripts',
-		'achievements',
-		"settings"
+		'achievements'
 	];
 	#end
 
@@ -340,10 +339,6 @@ class Paths
 		return null;
 	}
 
-	public static function returnJson(json:String) {
-		return 'settings/' + json + '.json';
-	}
-
 	public static var currentTrackedSounds:Map<String, Sound> = [];
 	public static function returnSound(path:String, key:String, ?library:String) {
 		#if MODS_ALLOWED
@@ -405,10 +400,6 @@ class Paths
 
 	inline static public function modsAchievements(key:String) {
 		return modFolders('achievements/' + key + '.json');
-	}
-
-	inline static public function modsSettings(key:String) {
-		return modFolders('settings/' + key + '.json');
 	}
 
 	static public function modFolders(key:String) {

@@ -243,7 +243,7 @@ class Note extends FlxSprite
 			if(skin == null || skin.length < 1) 
 			{
 				#if sys
-				JsonSettings.setJson('note');
+				JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 				skin = 'noteSkins/' + JsonSettings.noteSkin;
 				#else
 				skin = "noteSkins/NOTE_assets";

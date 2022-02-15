@@ -60,7 +60,7 @@ class HealthIcon extends FlxSprite
 	public function changeIcon(char:String) // this should stay like this until i find a way to softcode
 	{
 		#if sys
-		JsonSettings.setJson('uiSettings');
+		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 		#end
 		if (this.char != char)
 		{
