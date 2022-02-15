@@ -39,7 +39,7 @@ class StrumNote extends FlxSprite
 
 		var skin:String = null;
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('note');
 		skin = 'noteSkins/' + JsonSettings.noteSkin;
 		#else
 		skin = 'noteSkins/NOTE_assets';

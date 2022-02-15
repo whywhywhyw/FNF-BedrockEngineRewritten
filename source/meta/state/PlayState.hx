@@ -251,7 +251,6 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var totalMisses:Int = 0;
 	public var scoreTxt:FlxText;
-	public var scoreBorder:FlxSprite;
 
 	var judgementCounter:FlxText;
 	var timeTxt:FlxText;
@@ -1254,7 +1253,7 @@ class PlayState extends MusicBeatState
 		judgementCounter.screenCenter(Y);
 
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson(null);
 		#end
 
 		// Just in case.
@@ -1295,7 +1294,6 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
-		scoreBorder.cameras = [camHUD];
 		judgementCounter.cameras = [camHUD];
 		beWatermark.cameras = [camHUD];
 		peWatermark.cameras = [camHUD];
@@ -2633,7 +2631,7 @@ class PlayState extends MusicBeatState
 	}*/
 
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson(null);
 		#end
 
 		if (cpuControlled && !alreadyChanged)
@@ -2818,7 +2816,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('gameplaySettings');
 		#end
 
 		// Info Bar
@@ -2889,7 +2887,7 @@ class PlayState extends MusicBeatState
 			health = 2;
 
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('uiSettings');
 		#end
 		if (healthBar.percent < 20)
 		{
@@ -4175,7 +4173,7 @@ class PlayState extends MusicBeatState
 			spawnNoteSplashOnNote(note, false);
 	
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson(null);
 		#end
 
 		if (!practiceMode && !cpuControlled)
@@ -4208,7 +4206,7 @@ class PlayState extends MusicBeatState
 		var altPart:String = isPixelStage ? '-pixel' : '';
 
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('uiSettings');
 		uiSkin = JsonSettings.judgementSkin;
 		#else
 		uiSkin = 'bedrock';
@@ -4333,7 +4331,7 @@ class PlayState extends MusicBeatState
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('gameplaySettings');
 		#end
 		var eventKey:FlxKey = event.keyCode;
 		var key:Int = getKeyFromEvent(eventKey);
@@ -4366,7 +4364,7 @@ class PlayState extends MusicBeatState
 						}
 						canMiss = true;
 						#if sys
-						JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+						JsonSettings.setJson('gameplaySettings');
 						canMiss = JsonSettings.antiMash;
 						#end
 					}
@@ -4916,7 +4914,7 @@ class PlayState extends MusicBeatState
 	{
 		var skin:String = null;
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson('note');
 		skin = JsonSettings.noteSplashSkin;
 		#else
 		skin = "noteSplashes";
@@ -5384,7 +5382,7 @@ class PlayState extends MusicBeatState
 		setOnLuas('hits', songHits);
 
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson(null);
 		#end
 
 		var ret:Dynamic = callOnLuas('onRecalculateRating', []);
@@ -5460,7 +5458,7 @@ class PlayState extends MusicBeatState
 			https://github.com/nebulazorua/andromeda-engine*/
 		}
 		#if sys
-		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
+		JsonSettings.setJson(null);
 		#end
 
 		setOnLuas('rating', ratingPercent);
