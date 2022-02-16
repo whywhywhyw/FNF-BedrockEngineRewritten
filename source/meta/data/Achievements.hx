@@ -270,6 +270,7 @@ class AttachedAchievement extends FlxSprite {
 class AchievementObject extends FlxSpriteGroup {
 	public var onFinish:Void->Void = null;
 	var alphaTween:FlxTween;
+	var rotationTween:FlxTween;
 	public function new(name:String, ?camera:FlxCamera = null)
 	{
 		super(x, y);
@@ -334,7 +335,12 @@ class AchievementObject extends FlxSpriteGroup {
 		achievementName.cameras = cam;
 		achievementText.cameras = cam;
 		achievementIcon.cameras = cam;
-		alphaTween = FlxTween.tween(this, {alpha: 1}, 0.5, {onComplete: function (twn:FlxTween) {
+		alphaTween = FlxTween.tween(this, {alpha: 1}, 0.5, {onStart: function(twn:FlxTween) {
+			rotationTween = FlxTween.angle(achievementIcon, achievementIcon.angle, achievementIcon.angle + 720, 2.0, {ease: FlxEase.quartOut, onComplete: function (twn:FlxTween)
+			{
+				rotationTween = null;
+			}});
+		}, onComplete: function (twn:FlxTween) {
 			alphaTween = FlxTween.tween(this, {alpha: 0}, 0.5, {
 				startDelay: 2.5,
 				onComplete: function(twn:FlxTween) {
@@ -349,6 +355,9 @@ class AchievementObject extends FlxSpriteGroup {
 	override function destroy() {
 		if(alphaTween != null) {
 			alphaTween.cancel();
+		}
+		if(rotationTween != null) {
+			rotationTween.cancel();
 		}
 		super.destroy();
 	}
