@@ -47,7 +47,6 @@ class JsonEditor extends MusicBeatState
       public var gbutonum:FlxButton;
 
       //grabbing shit from JsonSettings.hx (gameplay)
-      public var letterG:Bool;
       public var divide:String;
       public var ratingDivider:String;
       public var mash:Bool;
@@ -129,7 +128,6 @@ class JsonEditor extends MusicBeatState
                 ididyourmom = true;
             }*/
 
-            letterG = JsonSettings.letterGrader;
             divide = JsonSettings.divider;
             ratingDivider = JsonSettings.ratingDivider;
             mash = JsonSettings.antiMash;
@@ -156,13 +154,6 @@ class JsonEditor extends MusicBeatState
 		{
                   icon = !icon;
                  // saveUISetting();
-		};
-
-            var oof = new FlxUICheckBox(20, 60, null, null, "Letter Grader", 200);
-		oof.checked = letterG;
-		oof.callback = function()
-		{
-                  letterG = !letterG;
 		};
 
             var anti = new FlxUICheckBox(20, 100, null, null, "Antimash", 200);
@@ -218,7 +209,6 @@ class JsonEditor extends MusicBeatState
             group_two.add(coolButton);
             group_two.add(coolInput);
             group_two.add(coolInput2);
-            group_two.add(oof);
             group_two.add(anti);
             UI_characterbox.addGroup(group_two);
             
@@ -287,7 +277,6 @@ class JsonEditor extends MusicBeatState
             savegtext = 
             '
             {
-                  "letterGrader":'+letterG+',
                   "antiMash":'+mash+',
                   "divider": "'+coolInput.text+'"
                   "ratingDivider": "'+coolInput2.text+'"
@@ -296,12 +285,11 @@ class JsonEditor extends MusicBeatState
             File.saveContent(JsonSettings.dirtwo, savegtext);
             if (gameplay == null)
             {
-                  if (FileSystem.exists(gbackup) && gbackup.contains("letterGrader") && gbackup.contains("antiMash") && gbackup.contains("divider"))
+                  if (FileSystem.exists(gbackup) && gbackup.contains("antiMash") && gbackup.contains("divider"))
                         File.saveContent(gsavedir, gbackup);
                   else
                   {
                         gameplay = '{
-                        "letterGrader":true,
                         "antiMash":true,
                         "divider": "-"
                         }';

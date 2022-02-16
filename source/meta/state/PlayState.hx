@@ -2543,7 +2543,7 @@ class PlayState extends MusicBeatState
 	override public function onFocus():Void
 	{
 		#if desktop
-		if (health > 0 && !paused)
+		if (health > 0 && !paused && FlxG.autoPause)
 		{
 			if (Conductor.songPosition > 0.0)
 			{
@@ -2831,7 +2831,10 @@ class PlayState extends MusicBeatState
 		scoreTxt.text += divider + '[? | ?]';
 
 	if (ratingFC == "" && totalMisses > 0)
-			scoreTxt.text += divider + '[' + ratingName + ']'; 
+		scoreTxt.text += divider + '[' + ratingName + ']';
+
+	if (ClientPrefs.ratingSystem == "None")
+		scoreTxt.text = 'Score: ' + songScore + divider + 'Misses: ' + totalMisses;
 
 		if (botplayTxt.visible)
 		{
@@ -5388,57 +5391,73 @@ for (key => value in luaShaders)
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 		#end
 
-		var ret:Dynamic = callOnLuas('onRecalculateRating', []);
-		if (ret != FunkinLua.Function_Stop)
+	var ret:Dynamic = callOnLuas('onRecalculateRating', []);
+	if (ret != FunkinLua.Function_Stop)
+	{
+		if (totalPlayed < 1) // Prevent divide by 0
+			ratingPercent = 0;
+		else
+			// Rating Percent
+			ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
+
+		// Rating Name
+		if (ratingPercent >= 1)
 		{
-			if (totalPlayed < 1) // Prevent divide by 0
-				ratingPercent = 0;
-			else
-				// Rating Percent
-				ratingPercent = Math.min(1, Math.max(0, totalNotesHit / totalPlayed));
-
-			// Rating Name
-			if (ratingPercent >= 1)
+			switch (ClientPrefs.ratingSystem)
 			{
-				#if sys
-				if (JsonSettings.letterGrader)
-					ratingName = Ratings.ratingStuff[Ratings.ratingStuff.length - 1][0]; // Uses last string
-				else
-					ratingName = Ratings.ratingSimple[Ratings.ratingSimple.length - 1][0];
-				#else
-				ratingName = Ratings.ratingStuff[Ratings.ratingStuff.length - 1][0];
-				#end
-			}
-			else
-			{
-				#if sys
-				if (JsonSettings.letterGrader)
-				{
-					for (i in 0...Ratings.ratingStuff.length - 1)
+				case "Bedrock":
+					ratingName = Ratings.bedrockRatings[Ratings.bedrockRatings.length - 1][0];
 					{
-						if (ratingPercent < Ratings.ratingStuff[i][1])
+						for (i in 0...Ratings.bedrockRatings.length - 1)
 						{
-							ratingName = Ratings.ratingStuff[i][0];
-							break;
+						if (ratingPercent < Ratings.bedrockRatings[i][1])
+							{
+								ratingName = Ratings.bedrockRatings[i][0];
+								break;
+							}
 						}
 					}
-				}
-		        else
-				{
-				#end
-					for (i in 0...Ratings.ratingSimple.length - 1)
+				case "Psych":
+					ratingName = Ratings.psychRatings[Ratings.psychRatings.length - 1][0];
 					{
-						if (ratingPercent < Ratings.ratingSimple[i][1])
+						for (i in 0...Ratings.psychRatings.length - 1)
 						{
-							ratingName = Ratings.ratingSimple[i][0];
-							break;
+							if (ratingPercent < Ratings.psychRatings[i][1])
+							{
+								ratingName = Ratings.psychRatings[i][0];
+								break;
+							}
 						}
 					}
-				#if sys
-				}
-				#end
+				case "Forever":
+					ratingName = Ratings.foreverRatings[Ratings.foreverRatings.length - 1][0];
+					{
+						for (i in 0...Ratings.foreverRatings.length - 1)
+						{
+						if (ratingPercent < Ratings.foreverRatings[i][1])
+							{
+								ratingName = Ratings.foreverRatings[i][0];
+								break;
+							}
+						}
+					}
+				case "Andromeda":
+					ratingName = Ratings.andromedaRatings[Ratings.andromedaRatings.length - 1][0];
+					{
+						for (i in 0...Ratings.andromedaRatings.length - 1)
+						{
+							if (ratingPercent < Ratings.andromedaRatings[i][1])
+							{
+								ratingName = Ratings.andromedaRatings[i][0];
+								break;
+							}
+						}
+					}
 			}
+		}
+	}
 
+		{
 			// Rating FC
 			ratingFC = "";
 			if (marvelouses > 0)
@@ -5449,16 +5468,6 @@ for (key => value in luaShaders)
 				ratingFC = "GFC"; // Good Full Combo
 			if (bads > 0 || shits > 0)
 				ratingFC = "FC"; // Full Combo
-
-			//stars, removed for now
-				/*☆☆☆☆
-				☆☆☆
-				☆☆
-				☆*/
-				
-			/*andromeda engine was  probably 
-			the first to have the stars idea, check them out!
-			https://github.com/nebulazorua/andromeda-engine*/
 		}
 		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);

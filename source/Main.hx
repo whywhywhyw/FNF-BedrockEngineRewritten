@@ -105,7 +105,5 @@ class Main extends Sprite
 			displaycounters.visible = ClientPrefs.showFPS;
 		}
 		#end
-		
-		//note to self: add Auto Pause back - Gui iago
 	}
 }

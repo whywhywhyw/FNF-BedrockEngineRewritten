@@ -37,7 +37,6 @@ class JsonSettings
     //gameplay settings 
     public static var divider:String;
     public static var ratingDivider:String;
-    public static var letterGrader:Null<Bool>;
     public static var antiMash:Null<Bool>;
 
     //json directories
@@ -104,12 +103,10 @@ class JsonSettings
 
                 ///////////////////////////////GAMEPLAY//////////////////////////////////////
 
-                var letterGraderTEMPLATE:Bool = Reflect.getProperty(poop, "letterGrader");
 				var antiMashTEMPLATE:Bool = Reflect.getProperty(poop, "antiMash");
 				var dividerTEMPLATE:String = Reflect.getProperty(poop, "divider");
                 var ratingDividerTEMPLATE:String = Reflect.getProperty(poop, "ratingDivider");
 
-                letterGrader = letterGraderTEMPLATE;
                 antiMash = antiMashTEMPLATE;
                 divider = dividerTEMPLATE;
                 ratingDivider = ratingDividerTEMPLATE;

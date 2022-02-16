@@ -1,5 +1,7 @@
 package;
 import flixel.*;
+import meta.state.*;
+import meta.subState.*;
 import flixel.FlxSubState;
 import flixel.addons.ui.FlxUIButton;
 import flixel.addons.ui.FlxUIPopup;

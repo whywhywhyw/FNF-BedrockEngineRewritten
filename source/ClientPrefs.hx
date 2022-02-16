@@ -82,6 +82,8 @@ class ClientPrefs {
 	public static var bgAlpha:Float = 0;
 	public static var dynamicCam:Bool = false;
 	public static var useClassicSongs:Bool = false;
+	public static var ratingSystem:String = 'Bedrock';
+	public static var autoPause:Bool = true;
 
 	// Added by Bedrock Engine (via Pull Requests)
 	public static var marvelouses:Bool = true;
@@ -173,6 +175,8 @@ class ClientPrefs {
 		FlxG.save.data.bgAlpha = bgAlpha;
 		FlxG.save.data.dynamicCam = dynamicCam;
 		FlxG.save.data.useClassicSongs = useClassicSongs;
+		FlxG.save.data.ratingSystem = ratingSystem;
+		FlxG.save.data.autoPause = autoPause;
 
 		// Added by Bedrock Engine (via Pull Requests)
 		FlxG.save.data.marvelousWindow = marvelousWindow;
@@ -346,6 +350,13 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.useClassicSongs != null) {
 			useClassicSongs = FlxG.save.data.useClassicSongs;
+		}
+		if(FlxG.save.data.ratingSystem != null) {
+			ratingSystem = FlxG.save.data.ratingSystem;
+		}
+		if(FlxG.save.data.autoPause != null) {
+			autoPause = FlxG.save.data.autoPause;
+			FlxG.autoPause = autoPause;
 		}
 		
 		// Added by Bedrock Engine (via Pull Requests)

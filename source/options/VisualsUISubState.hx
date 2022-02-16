@@ -35,6 +35,18 @@ class VisualsUISubState extends BaseOptionsMenu
 		rpcTitle = 'Tweaking the Visuals & UI'; //for Discord Rich Presence
 
 		var option:Option = new Option
+		(
+			'Auto Pause',
+			'If checked, pauses the game when unfocused.',
+			'autoPause',
+			'bool',
+			true
+		);
+		option.onChange = onChangeAutoPause;
+		addOption(option);
+
+
+		var option:Option = new Option
 	(
 		'Camera Zooms',
 		"If unchecked, the camera won't zoom in on a beat hit.",
@@ -81,13 +93,13 @@ class VisualsUISubState extends BaseOptionsMenu
 	addOption(option);
 
 		var option:Option = new Option
-		(
+	(
 		'Note Splashes',
 		"If unchecked, hitting \"Sick!\" notes won't show particles.",
 		'noteSplashes',
 		'bool',
 		true
-		);
+	);
 	addOption(option);
 
 		var option:Option = new Option
@@ -192,7 +204,7 @@ class VisualsUISubState extends BaseOptionsMenu
 			'timeBarType',
 			'string',
 			'Time Left',
-		['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']
+		['Time Left', 'Time Elapsed', 'Song Name', 'Disabled', "None"]
 		);
 		addOption(option);
 
@@ -208,6 +220,11 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 
 		super();
+	}
+
+	function onChangeAutoPause()
+	{
+		FlxG.autoPause = ClientPrefs.autoPause;
 	}
 
 	#if !mobile
