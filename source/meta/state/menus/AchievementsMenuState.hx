@@ -7,6 +7,7 @@ import Discord.DiscordClient;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.tweens.FlxTween;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
@@ -26,14 +27,16 @@ class AchievementsMenuState extends MusicBeatState
 	private static var curSelected:Int = 0;
 	private var achievementArray:Array<AttachedAchievement> = [];
 	private var achievementIndex:Array<Int> = [];
+	private var menuBG:FlxSprite;
 	private var descText:FlxText;
+	private var swagTween:FlxTween;
 
 	override function create() {
 		#if desktop
 		DiscordClient.changePresence("in the Achievements Menu", null);
 		#end
 
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		menuBG = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -76,14 +79,33 @@ class AchievementsMenuState extends MusicBeatState
 		super.create();
 	}
 
+	var holdTime:Float = 0;
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+		
+		var shiftMult:Int = 1;
+		if (FlxG.keys.pressed.SHIFT)
+			shiftMult = 3;
 
 		if (controls.UI_UP_P) {
 			changeSelection(-1);
+			holdTime = 0;
 		}
 		if (controls.UI_DOWN_P) {
 			changeSelection(1);
+			holdTime = 0;
+		}
+		
+		if (controls.UI_DOWN || controls.UI_UP)
+		{
+			var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
+			holdTime += elapsed;
+			var checkNewHold:Int = Math.floor((holdTime - 0.5) * 10);
+
+			if (holdTime > 0.5 && checkNewHold - checkLastHold > 0)
+			{
+				changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+			}
 		}
 
 		if (controls.BACK) {
@@ -100,13 +122,21 @@ class AchievementsMenuState extends MusicBeatState
 			curSelected = 0;
 
 		var bullShit:Int = 0;
+		
+		if (swagTween != null)
+			swagTween.cancel();
+		
+		swagTween = FlxTween.color(menuBG, 0.7, menuBG.color,
+			FlxColor.interpolate(FlxColor.WHITE, FlxColor.fromInt(Std.parseInt("0x" + CoolUtil.dominantColor(achievementArray[curSelected]).hex())), 0.2));
 
 		for (item in grpOptions.members) {
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
+			item.xAdd = 200;
 			item.alpha = 0.6;
 			if (item.targetY == 0) {
+				item.xAdd = 300;
 				item.alpha = 1;
 			}
 		}
