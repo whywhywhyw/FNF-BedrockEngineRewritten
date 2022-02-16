@@ -204,7 +204,7 @@ class VisualsUISubState extends BaseOptionsMenu
 			'timeBarType',
 			'string',
 			'Time Left',
-		['Time Left', 'Time Elapsed', 'Song Name', 'Disabled', "None"]
+		['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']
 		);
 		addOption(option);
 
