@@ -2828,7 +2828,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.text += divider + '[' + ratingName + ratingDivider + ratingFC + ']';
 
 	if (ratingFC == "")
-		scoreTxt.text += divider + '[? | ?]';
+		scoreTxt.text += divider + '[?' + ratingDivider + '?]';
 
 	if (ratingFC == "" && totalMisses > 0)
 		scoreTxt.text += divider + '[' + ratingName + ']';
