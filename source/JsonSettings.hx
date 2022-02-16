@@ -48,7 +48,7 @@ class JsonSettings
     public static var dirmod:String = "mods/settings/settings.json";
     #end
 
-    public static function setJson()
+    public static function setJson(offdir, dir, dirtwo)
     {
         if (FileSystem.exists(offdir) && FileSystem.exists(dir) && FileSystem.exists(dirtwo))
         {
