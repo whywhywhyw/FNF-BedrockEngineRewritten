@@ -17,11 +17,10 @@ class NoteSplash extends FlxSprite
 	public function new(x:Float = 0, y:Float = 0, ?note:Int = 0) {
 		super(x, y);
 
-		var skin:String = 'splashSkins/noteSplashes';
-		#if sys
+		var skin:String;
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 		skin = 'splashSkins/' + JsonSettings.noteSplashSkin;
-		#end
+
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 
 		loadAnims(skin);
@@ -38,12 +37,8 @@ class NoteSplash extends FlxSprite
 		alpha = 0.6;
 
 		if(texture == null) {
-			#if sys
 			JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 			texture = 'splashSkins/' + JsonSettings.noteSplashSkin;
-			#else
-			texture = 'splashSkins/noteSplashes';
-			#end
 			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
 		}
 

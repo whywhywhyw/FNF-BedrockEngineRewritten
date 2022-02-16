@@ -1253,9 +1253,7 @@ class PlayState extends MusicBeatState
 		judgementCounter.scrollFactor.set();
 		judgementCounter.screenCenter(Y);
 
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 
 		// Just in case.
 		if (ClientPrefs.marvelouses)
@@ -2621,10 +2619,7 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.swapOldIcon();
 	}*/
-
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 
 		if (cpuControlled && !alreadyChanged)
 		{
@@ -2807,19 +2802,14 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
-		#if sys
+		
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
+		
 
 		// Info Bar
 		var ratingNameTwo:String = ratingName;
-		#if sys
 		var divider:String = ' '+JsonSettings.divider+' ';
-		//var ratingDivider:String = ' '+JsonSettings.ratingDivider+' ';
-		#else
-		var divider:String = "-";
-		#end
-		var ratingDivider:String = " | ";
+		var ratingDivider:String = ' ' + " ";
 
 		scoreTxt.text = 'Score: ' + songScore;
 		scoreTxt.text += divider + 'Misses:' + totalMisses;
@@ -2881,24 +2871,19 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 		if (healthBar.percent < 20)
 		{
 			(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 1;
 			(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 2;
-			#if sys
 			if (JsonSettings.iconSupport)
 			{
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 1;
 				(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 0;
 			}
-			#end
 		}
 		else if (healthBar.percent > 85)
 		{
-			#if sys
 			if (!JsonSettings.iconSupport)
 			{
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 2;
@@ -2906,12 +2891,9 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-			#end
 				(opponentChart ? iconP2 : iconP1).animation.curAnim.curFrame = 0;
 				(opponentChart ? iconP1 : iconP2).animation.curAnim.curFrame = 1;
-			#if sys
 			}
-			#end
 		}
 		else
 		{
@@ -4178,9 +4160,8 @@ for (key => value in luaShaders)
 		if (daRating == (ClientPrefs.marvelouses ? 'marvelous' : 'sick') && !note.noteSplashDisabled)
 			spawnNoteSplashOnNote(note, false);
 	
-		#if sys
+
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 
 		if (!practiceMode && !cpuControlled)
 		{
@@ -4208,15 +4189,11 @@ for (key => value in luaShaders)
 
 
 
-		var uiSkin:String = null;
 		var altPart:String = isPixelStage ? '-pixel' : '';
 
-		#if sys
+		
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		uiSkin = JsonSettings.judgementSkin;
-		#else
-		uiSkin = 'bedrock';
-		#end
+		var uiSkin:String = JsonSettings.judgementSkin;
 
 		rating.loadGraphic(Paths.image(getUiSkin(uiSkin, daRating, altPart)));
 		rating.cameras = [camHUD];
@@ -4336,9 +4313,7 @@ for (key => value in luaShaders)
 
 	private function onKeyPress(event:KeyboardEvent):Void
 	{
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 		var eventKey:FlxKey = event.keyCode;
 		var key:Int = getKeyFromEvent(eventKey);
 		// trace('Pressed: ' + eventKey);
@@ -4368,11 +4343,9 @@ for (key => value in luaShaders)
 							sortedNotesList.push(daNote);
 							// notesDatas.push(daNote.noteData);
 						}
-						canMiss = true;
-						#if sys
 						JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
 						canMiss = JsonSettings.antiMash;
-						#end
+						
 					}
 				});
 				sortedNotesList.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
@@ -4571,16 +4544,11 @@ for (key => value in luaShaders)
 
 		/*misses and combo breaks are different things, for example you have 0 combo and you miss a note, technically you do not break your combo because you dont have one.*/
 		
-		#if sys
 		if (combo > 0)
 		{
 			songMisses++;
 			combo = 0;
 		}
-		#else 
-		songMisses++;
-		combo = 0;
-		#end
 
 		totalMisses++;
 
@@ -4918,13 +4886,8 @@ for (key => value in luaShaders)
 
 	public function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null, opponent:Bool = true)
 	{
-		var skin:String = null;
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		skin = JsonSettings.noteSplashSkin;
-		#else
-		skin = "noteSplashes";
-		#end
+		var skin:String = JsonSettings.noteSplashSkin;
 		if (PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0)
 			skin = PlayState.SONG.splashSkin;
 
@@ -5387,9 +5350,7 @@ for (key => value in luaShaders)
 		setOnLuas('cbreaks', songMisses);
 		setOnLuas('hits', songHits);
 
-		#if sys
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 
 	var ret:Dynamic = callOnLuas('onRecalculateRating', []);
 	if (ret != FunkinLua.Function_Stop)
@@ -5403,6 +5364,7 @@ for (key => value in luaShaders)
 		// Rating Name
 		if (ratingPercent >= 1)
 		{
+			Ratings.callRating();
 			switch (ClientPrefs.ratingSystem)
 			{
 				case "Bedrock":
@@ -5469,9 +5431,8 @@ for (key => value in luaShaders)
 			if (bads > 0 || shits > 0)
 				ratingFC = "FC"; // Full Combo
 		}
-		#if sys
+
 		JsonSettings.setJson(JsonSettings.offdir, JsonSettings.dir, JsonSettings.dirtwo);
-		#end
 
 		setOnLuas('rating', ratingPercent);
 		setOnLuas('ratingName', ratingName);
